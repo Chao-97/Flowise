@@ -434,7 +434,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Description
+                                助手描述
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
                                 title={'助手的描述，最大长度为 512 个字符'}
@@ -455,7 +455,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 </Box>
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
-                        <Typography variant='overline'>Assistant Icon Src</Typography>
+                        <Typography variant='overline'>助手图标源</Typography>
                     </Stack>
                     <div
                         style={{
@@ -505,7 +505,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            OpenAI Credential
+                            OpenAI 凭据
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                         </Typography>
                     </Stack>
@@ -524,7 +524,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Instruction
+                                助手指导
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
                                 title={'助手使用的系统指令，最大长度为 32768 个字符。'}
