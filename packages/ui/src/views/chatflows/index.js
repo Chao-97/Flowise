@@ -161,7 +161,6 @@ const Chatflows = () => {
                                         variant='contained'
                                         value='card'
                                         title='卡片视图'
-                                        title='卡片视图'
                                     >
                                         <IconLayoutGrid />
                                     </ToggleButton>
