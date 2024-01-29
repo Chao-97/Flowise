@@ -1,3 +1,0 @@
-{
-    "description": "NeuralBeagle14-7B 是使用argilla/distilabel-intel-orca-dpo-pairs首选项数据集和本文中我的 DPO 笔记本对mlabonne/Beagle14-7B进行的 DPO 微调。"
-}
