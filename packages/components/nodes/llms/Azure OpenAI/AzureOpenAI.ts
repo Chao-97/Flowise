@@ -22,7 +22,7 @@ class AzureOpenAI_LLMs implements INode {
         this.type = 'AzureOpenAI'
         this.icon = 'Azure.svg'
         this.category = 'LLMs'
-        this.description = 'Wrapper around Azure OpenAI large language models'
+        this.description = '封装了 Azure OpenAI 大语言模型'
         this.baseClasses = [this.type, ...getBaseClasses(OpenAI)]
         this.credential = {
             label: 'Connect Credential',
@@ -103,7 +103,7 @@ class AzureOpenAI_LLMs implements INode {
                 optional: true
             },
             {
-                label: 'Temperature',
+                label: '随机性',
                 name: 'temperature',
                 type: 'number',
                 step: 0.1,
@@ -111,7 +111,7 @@ class AzureOpenAI_LLMs implements INode {
                 optional: true
             },
             {
-                label: 'Max Tokens',
+                label: '最大字符数',
                 name: 'maxTokens',
                 type: 'number',
                 step: 1,
@@ -143,7 +143,7 @@ class AzureOpenAI_LLMs implements INode {
                 additionalParams: true
             },
             {
-                label: 'Presence Penalty',
+                label: '话题新鲜度',
                 name: 'presencePenalty',
                 type: 'number',
                 step: 0.1,
@@ -151,7 +151,7 @@ class AzureOpenAI_LLMs implements INode {
                 additionalParams: true
             },
             {
-                label: 'Timeout',
+                label: '超时时间',
                 name: 'timeout',
                 type: 'number',
                 step: 1,

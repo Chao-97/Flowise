@@ -213,7 +213,7 @@ const Marketplace = () => {
                                 alt='WorkflowEmptySVG'
                             />
                         </Box>
-                        <div>No Marketplace Yet</div>
+                        <div>市场暂未开放</div>
                     </Stack>
                 )}
             </MainCard>

@@ -31,11 +31,11 @@ import { generateRandomGradient, formatDataGridRows } from 'utils/genericHelper'
 import { HIDE_CANVAS_DIALOG, SHOW_CANVAS_DIALOG } from 'store/actions'
 
 const exampleAPIFunc = `/*
-* You can use any libraries imported in Flowise
-* You can use properties specified in Output Schema as variables. Ex: Property = userid, Variable = $userid
-* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input
-* You can get custom variables: $vars.<variable-name>
-* Must return a string value at the end of function
+* 您可以使用 Flowise 中导入的任何库
+* 您可以在输出中使用指定的属性作为变量. Ex: Property = userid, Variable = $userid
+* 您可以获取默认配置: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input
+* 您可以获得自定义变量: $vars.<variable-name>
+* 必须在函数结束时返回一个字符串值
 */
 
 const fetch = require('node-fetch');
@@ -120,17 +120,17 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
 
     const columns = useMemo(
         () => [
-            { field: 'property', headerName: 'Property', editable: true, flex: 1 },
+            { field: 'property', headerName: '属性', editable: true, flex: 1 },
             {
                 field: 'type',
-                headerName: 'Type',
+                headerName: '类型',
                 type: 'singleSelect',
                 valueOptions: ['string', 'number', 'boolean', 'date'],
                 editable: true,
                 width: 120
             },
-            { field: 'description', headerName: 'Description', editable: true, flex: 1 },
-            { field: 'required', headerName: 'Required', type: 'boolean', editable: true, width: 80 },
+            { field: 'description', headerName: '描述', editable: true, flex: 1 },
+            { field: 'required', headerName: '是否必填', type: 'boolean', editable: true, width: 80 },
             {
                 field: 'actions',
                 type: 'actions',
@@ -227,7 +227,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to export Tool: ${errorData}`,
+                message: `导出工具失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -256,7 +256,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
             const createResp = await toolsApi.createNewTool(obj)
             if (createResp.data) {
                 enqueueSnackbar({
-                    message: 'New Tool added',
+                    message: '新工具已添加',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -272,7 +272,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to add new Tool: ${errorData}`,
+                message: `添加新工具失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -299,7 +299,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
             })
             if (saveResp.data) {
                 enqueueSnackbar({
-                    message: 'Tool saved',
+                    message: '已保存',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -316,7 +316,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
             console.error(error)
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to save Tool: ${errorData}`,
+                message: `保存工具失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -334,10 +334,10 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
 
     const deleteTool = async () => {
         const confirmPayload = {
-            title: `Delete Tool`,
-            description: `Delete tool ${toolName}?`,
-            confirmButtonName: 'Delete',
-            cancelButtonName: 'Cancel'
+            title: `删除工具`,
+            description: `删除工具 ${toolName}?`,
+            confirmButtonName: '删除',
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -346,7 +346,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 const delResp = await toolsApi.deleteTool(toolId)
                 if (delResp.data) {
                     enqueueSnackbar({
-                        message: 'Tool deleted',
+                        message: '工具已删除',
                         options: {
                             key: new Date().getTime() + Math.random(),
                             variant: 'success',
@@ -362,7 +362,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
             } catch (error) {
                 const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
                 enqueueSnackbar({
-                    message: `Failed to delete Tool: ${errorData}`,
+                    message: `删除工具失败: ${errorData}`,
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'error',
@@ -394,7 +394,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                     <div style={{ flex: 1 }} />
                     {dialogProps.type === 'EDIT' && (
                         <Button variant='outlined' onClick={() => exportTool()} startIcon={<IconFileExport />}>
-                            Export
+                            导出
                         </Button>
                     )}
                 </div>
@@ -403,12 +403,9 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Tool Name
+                            工具名称
                             <span style={{ color: 'red' }}>&nbsp;*</span>
-                            <TooltipWithParser
-                                style={{ marginLeft: 10 }}
-                                title={'Tool name must be small capital letter with underscore. Ex: my_tool'}
-                            />
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'工具名称必须是小写字母并带有下划线. 例如: my_tool'} />
                         </Typography>
                     </Stack>
                     <OutlinedInput
@@ -416,7 +413,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                         type='string'
                         fullWidth
                         disabled={dialogProps.type === 'TEMPLATE'}
-                        placeholder='My New Tool'
+                        placeholder='我的新工具'
                         value={toolName}
                         name='toolName'
                         onChange={(e) => setToolName(e.target.value)}
@@ -425,11 +422,11 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Tool description
+                            工具描述
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'Description of what the tool does. This is for ChatGPT to determine when to use this tool.'}
+                                title={'描述该工具的用途。这是为了让 ChatGPT 确定何时使用该工具'}
                             />
                         </Typography>
                     </Stack>
@@ -438,7 +435,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                         type='string'
                         fullWidth
                         disabled={dialogProps.type === 'TEMPLATE'}
-                        placeholder='Description of what the tool does. This is for ChatGPT to determine when to use this tool.'
+                        placeholder='描述该工具的用途。这是为了让 ChatGPT 确定何时使用该工具'
                         multiline={true}
                         rows={3}
                         value={toolDesc}
@@ -448,7 +445,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 </Box>
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
-                        <Typography variant='overline'>Tool Icon Src</Typography>
+                        <Typography variant='overline'>工具图标地址</Typography>
                     </Stack>
                     <OutlinedInput
                         id='toolIcon'
@@ -464,8 +461,8 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Output Schema
-                            <TooltipWithParser style={{ marginLeft: 10 }} title={'What should be the output response in JSON format?'} />
+                            输出模板
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'JSON 格式的输出响应应该是什么?'} />
                         </Typography>
                     </Stack>
                     <Grid
@@ -479,10 +476,10 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Javascript Function
+                            Javascript 函数
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title='Function to execute when tool is being used. You can use properties specified in Output Schema as variables. For example, if the property is <code>userid</code>, you can use as <code>$userid</code>. Return value must be a string. You can also override the code from API by following this <a target="_blank" href="https://docs.flowiseai.com/tools/custom-tool#override-function-from-api">guide</a>'
+                                title='使用工具时执行的函数。您可以使用输出模版中指定的属性作为变量. 例如, 如果属性是 <code>userid</code>,你可以这样使用 <code>$userid</code>. 返回值必须是字符串. '
                             />
                         </Typography>
                     </Stack>
@@ -492,11 +489,11 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                         variant='outlined'
                         onClick={() => setShowHowToDialog(true)}
                     >
-                        How to use Function
+                        怎样使用函数
                     </Button>
                     {dialogProps.type !== 'TEMPLATE' && (
                         <Button style={{ marginBottom: 10 }} variant='outlined' onClick={() => setToolFunc(exampleAPIFunc)}>
-                            See Example
+                            查看样例
                         </Button>
                     )}
                     <CodeEditor
@@ -512,12 +509,12 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
             <DialogActions>
                 {dialogProps.type === 'EDIT' && (
                     <StyledButton color='error' variant='contained' onClick={() => deleteTool()}>
-                        Delete
+                        删除
                     </StyledButton>
                 )}
                 {dialogProps.type === 'TEMPLATE' && (
                     <StyledButton color='secondary' variant='contained' onClick={useToolTemplate}>
-                        Use Template
+                        使用模版
                     </StyledButton>
                 )}
                 {dialogProps.type !== 'TEMPLATE' && (
