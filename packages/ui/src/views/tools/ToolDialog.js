@@ -454,7 +454,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                         type='string'
                         fullWidth
                         disabled={dialogProps.type === 'TEMPLATE'}
-                        placeholder='https://raw.githubusercontent.com/gilbarbara/logos/main/logos/airtable.svg'
+                        placeholder=''
                         value={toolIcon}
                         name='toolIcon'
                         onChange={(e) => setToolIcon(e.target.value)}
@@ -464,7 +464,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
                             输出模式
-                            <TooltipWithParser style={{ marginLeft: 10 }} title={'What should be the output response in JSON format?'} />
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'JSON 格式的输出响应应该是什么?'} />
                         </Typography>
                     </Stack>
                     <Grid
