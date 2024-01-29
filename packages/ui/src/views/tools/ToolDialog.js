@@ -394,8 +394,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                     <div style={{ flex: 1 }} />
                     {dialogProps.type === 'EDIT' && (
                         <Button variant='outlined' onClick={() => exportTool()} startIcon={<IconFileExport />}>
-                            导出
-                            导出
+                            导出 导出
                         </Button>
                     )}
                 </div>
@@ -404,8 +403,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            工具名称
-                            工具名称
+                            工具名称 工具名称
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                             <TooltipWithParser style={{ marginLeft: 10 }} title={'工具名称必须是小写字母并带有下划线. 例如: my_tool'} />
                         </Typography>
@@ -478,8 +476,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Javascript 函数
-                            Javascript 函数
+                            Javascript 函数 Javascript 函数
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
                                 title='使用工具时执行的函数。您可以使用输出模版中指定的属性作为变量. 例如, 如果属性是 <code>userid</code>,你可以这样使用 <code>$userid</code>. 返回值必须是字符串. '
