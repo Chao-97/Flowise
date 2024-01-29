@@ -137,12 +137,12 @@ const Chatflows = () => {
                             width: '100%'
                         }}
                     >
-                        <h1>Chatflows</h1>
+                        <h1 style={{ width: '90px' }}>聊天流</h1>
                         <TextField
                             size='small'
                             sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                             variant='outlined'
-                            placeholder='Search name or category'
+                            placeholder='使用名字搜索'
                             onChange={onSearchChange}
                             InputProps={{
                                 startAdornment: (
@@ -160,7 +160,7 @@ const Chatflows = () => {
                                         sx={{ color: theme?.customization?.isDarkMode ? 'white' : 'inherit' }}
                                         variant='contained'
                                         value='card'
-                                        title='Card View'
+                                        title='卡片视图'
                                     >
                                         <IconLayoutGrid />
                                     </ToggleButton>
@@ -168,7 +168,7 @@ const Chatflows = () => {
                                         sx={{ color: theme?.customization?.isDarkMode ? 'white' : 'inherit' }}
                                         variant='contained'
                                         value='list'
-                                        title='List View'
+                                        title='列表视图'
                                     >
                                         <IconList />
                                     </ToggleButton>
@@ -177,7 +177,7 @@ const Chatflows = () => {
                             <Box sx={{ width: 5 }} />
                             <ButtonGroup disableElevation aria-label='outlined primary button group'>
                                 <StyledButton variant='contained' onClick={addNew} startIcon={<IconPlus />}>
-                                    Add New
+                                    添加新的聊天流
                                 </StyledButton>
                             </ButtonGroup>
                         </ButtonGroup>
@@ -208,7 +208,7 @@ const Chatflows = () => {
                     <Box sx={{ p: 2, height: 'auto' }}>
                         <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={WorkflowEmptySVG} alt='WorkflowEmptySVG' />
                     </Box>
-                    <div>No Chatflows Yet</div>
+                    <div>还没有聊天流</div>
                 </Stack>
             )}
             <LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} />
