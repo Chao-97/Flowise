@@ -204,12 +204,12 @@ const Credentials = () => {
                                 width: '100%'
                             }}
                         >
-                            <h1>Credentials&nbsp;</h1>
+                            <h1 style={{width:'100px'}}>证书&nbsp;</h1>
                             <TextField
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                                 variant='outlined'
-                                placeholder='Search credential name'
+                                placeholder='搜索凭证名称'
                                 onChange={onSearchChange}
                                 InputProps={{
                                     startAdornment: (
@@ -233,7 +233,7 @@ const Credentials = () => {
                                         onClick={listCredential}
                                         startIcon={<IconPlus />}
                                     >
-                                        Add Credential
+                                        添加凭证
                                     </StyledButton>
                                 </ButtonGroup>
                             </ButtonGroup>
@@ -249,7 +249,7 @@ const Credentials = () => {
                                 alt='CredentialEmptySVG'
                             />
                         </Box>
-                        <div>No Credentials Yet</div>
+                        <div>暂无凭证</div>
                     </Stack>
                 )}
                 {credentials.length > 0 && (
@@ -257,9 +257,9 @@ const Credentials = () => {
                         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Last Updated</TableCell>
-                                    <TableCell>Created</TableCell>
+                                    <TableCell>名称</TableCell>
+                                    <TableCell>最近更新</TableCell>
+                                    <TableCell>已创建</TableCell>
                                     <TableCell> </TableCell>
                                     <TableCell> </TableCell>
                                 </TableRow>
@@ -300,12 +300,12 @@ const Credentials = () => {
                                         <TableCell>{moment(credential.updatedDate).format('DD-MMM-YY')}</TableCell>
                                         <TableCell>{moment(credential.createdDate).format('DD-MMM-YY')}</TableCell>
                                         <TableCell>
-                                            <IconButton title='Edit' color='primary' onClick={() => edit(credential)}>
+                                            <IconButton title='编辑' color='primary' onClick={() => edit(credential)}>
                                                 <IconEdit />
                                             </IconButton>
                                         </TableCell>
                                         <TableCell>
-                                            <IconButton title='Delete' color='error' onClick={() => deleteCredential(credential)}>
+                                            <IconButton title='删除' color='error' onClick={() => deleteCredential(credential)}>
                                                 <IconTrash />
                                             </IconButton>
                                         </TableCell>

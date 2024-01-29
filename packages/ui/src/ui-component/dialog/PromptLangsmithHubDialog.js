@@ -267,7 +267,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                 <Box sx={{ display: 'flex', flexDirection: 'row', p: 2, pt: 1, alignItems: 'center' }}>
                     <FormControl sx={{ mr: 1, width: '30%' }}>
                         <InputLabel size='small' id='model-checkbox-label'>
-                            Model
+                            模型
                         </InputLabel>
                         <Select
                             id='model-checkbox'
@@ -304,7 +304,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                     </FormControl>
                     <FormControl sx={{ mr: 1, width: '30%' }}>
                         <InputLabel size='small' id='usecase-checkbox-label'>
-                            Usecase
+                            用例
                         </InputLabel>
                         <Select
                             autoWidth={false}
@@ -379,7 +379,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                     </FormControl>
                     <FormControl sx={{ width: '10%' }}>
                         <Button disableElevation variant='outlined' onClick={fetchPrompts}>
-                            Search
+                            搜索
                         </Button>
                     </FormControl>
                 </Box>
@@ -389,7 +389,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                         <Box sx={{ p: 5, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '20vh', width: 'auto' }} src={promptEmptySVG} alt='promptEmptySVG' />
                         </Box>
-                        <div>Please wait....loading Prompts</div>
+                        <div>请稍候....加载提示</div>
                     </Stack>
                 )}
                 {!loading && availablePrompNameList && availablePrompNameList.length === 0 && (
@@ -397,7 +397,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                         <Box sx={{ p: 5, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '20vh', width: 'auto' }} src={promptEmptySVG} alt='promptEmptySVG' />
                         </Box>
-                        <div>No Available Prompts</div>
+                        <div>没有可用的提示</div>
                     </Stack>
                 )}
                 {!loading && availablePrompNameList && availablePrompNameList.length > 0 && (
@@ -409,7 +409,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                                         <Card variant='outlined' sx={{ height: 470, overflow: 'auto', borderRadius: 0 }}>
                                             <CardContent sx={{ p: 1 }}>
                                                 <Typography sx={{ fontSize: 10 }} color='text.secondary' gutterBottom>
-                                                    Available Prompts
+                                                        可用提示
                                                 </Typography>
                                                 <List component='nav' aria-label='secondary mailbox folder'>
                                                     {availablePrompNameList.map((item, index) => (
@@ -515,7 +515,7 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
                                                         aria-controls='panel3d-content'
                                                         id='panel3d-header'
                                                     >
-                                                        <Typography>Readme</Typography>
+                                                        <Typography>自述文件</Typography>
                                                     </AccordionSummary>
                                                     <AccordionDetails>
                                                         <div
@@ -574,13 +574,13 @@ const PromptLangsmithHubDialog = ({ promptType, show, onCancel, onSubmit }) => {
             </DialogContent>
             {availablePrompNameList && availablePrompNameList.length > 0 && (
                 <DialogActions>
-                    <Button onClick={onCancel}>Cancel</Button>
+                    <Button onClick={onCancel}>取消</Button>
                     <StyledButton
                         disabled={!selectedPrompt?.detailed}
                         onClick={() => onSubmit(selectedPrompt.detailed)}
                         variant='contained'
                     >
-                        Load
+                        载入
                     </StyledButton>
                 </DialogActions>
             )}

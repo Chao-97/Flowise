@@ -47,16 +47,16 @@ const CredentialInputHandler = ({ inputParam, data, onSelect, disabled = false }
             if (componentCredentialsResp.data) {
                 if (Array.isArray(componentCredentialsResp.data)) {
                     const dialogProp = {
-                        title: 'Add New Credential',
+                        title: '添加新凭证',
                         componentsCredentials: componentCredentialsResp.data
                     }
                     setCredentialListDialogProps(dialogProp)
                     setShowCredentialListDialog(true)
                 } else {
                     const dialogProp = {
-                        type: 'ADD',
-                        cancelButtonName: 'Cancel',
-                        confirmButtonName: 'Add',
+                        type: '添加',
+                        cancelButtonName: '取消',
+                        confirmButtonName: '添加',
                         credentialComponent: componentCredentialsResp.data
                     }
                     setSpecificCredentialDialogProps(dialogProp)
@@ -79,9 +79,9 @@ const CredentialInputHandler = ({ inputParam, data, onSelect, disabled = false }
     const onCredentialSelected = (credentialComponent) => {
         setShowCredentialListDialog(false)
         const dialogProp = {
-            type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add',
+            type: '添加',
+            cancelButtonName: '取消',
+            confirmButtonName: '添加',
             credentialComponent
         }
         setSpecificCredentialDialogProps(dialogProp)
@@ -100,7 +100,7 @@ const CredentialInputHandler = ({ inputParam, data, onSelect, disabled = false }
                                     disabled={disabled}
                                     name={inputParam.name}
                                     nodeData={data}
-                                    value={credentialId ?? 'choose an option'}
+                                    value={credentialId ?? '选择一个选项'}
                                     isCreateNewOption={true}
                                     credentialNames={inputParam.credentialNames}
                                     onSelect={(newValue) => {
@@ -110,7 +110,7 @@ const CredentialInputHandler = ({ inputParam, data, onSelect, disabled = false }
                                     onCreateNew={() => addAsyncOption(inputParam.name)}
                                 />
                                 {credentialId && (
-                                    <IconButton title='Edit' color='primary' size='small' onClick={() => editCredential(credentialId)}>
+                                    <IconButton title='编辑' color='primary' size='small' onClick={() => editCredential(credentialId)}>
                                         <IconEdit />
                                     </IconButton>
                                 )}

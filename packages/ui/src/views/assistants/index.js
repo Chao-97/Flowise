@@ -38,7 +38,7 @@ const Assistants = () => {
 
     const loadExisting = () => {
         const dialogProp = {
-            title: 'Load Existing Assistant'
+            title: '加载现有助手'
         }
         setLoadDialogProps(dialogProp)
         setShowLoadDialog(true)
@@ -51,10 +51,10 @@ const Assistants = () => {
 
     const addNew = (selectedOpenAIAssistantId, credential) => {
         const dialogProp = {
-            title: 'Add New Assistant',
+            title: '添加新助手',
             type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add',
+            cancelButtonName: '取消',
+            confirmButtonName: '添加',
             selectedOpenAIAssistantId,
             credential
         }
@@ -64,10 +64,10 @@ const Assistants = () => {
 
     const edit = (selectedAssistant) => {
         const dialogProp = {
-            title: 'Edit Assistant',
-            type: 'EDIT',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Save',
+            title: '编辑助手',
+            type: '编辑助手',
+            cancelButtonName: '取消',
+            confirmButtonName: '储存',
             data: selectedAssistant
         }
         setDialogProps(dialogProp)
@@ -90,14 +90,14 @@ const Assistants = () => {
             <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
                 <Stack flexDirection='row'>
                     <Grid sx={{ mb: 1.25 }} container direction='row'>
-                        <h1>OpenAI Assistants</h1>
+                        <h1 style={{width:'100px'}}>OpenAI 助手</h1>
                         <Box sx={{ flexGrow: 1 }} />
                         <Grid item>
                             <Button variant='outlined' sx={{ mr: 2 }} onClick={loadExisting} startIcon={<IconFileImport />}>
-                                Load
+                                导入
                             </Button>
                             <StyledButton variant='contained' sx={{ color: 'white' }} onClick={addNew} startIcon={<IconPlus />}>
-                                Add
+                                添加
                             </StyledButton>
                         </Grid>
                     </Grid>
@@ -123,7 +123,7 @@ const Assistants = () => {
                         <Box sx={{ p: 2, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={ToolEmptySVG} alt='ToolEmptySVG' />
                         </Box>
-                        <div>No Assistants Added Yet</div>
+                        <div>尚未添加助手</div>
                     </Stack>
                 )}
             </MainCard>

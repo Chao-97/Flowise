@@ -20,7 +20,7 @@ const SelectVariable = ({ availableNodesForVariable, disabled = false, onSelectA
             {!disabled && (
                 <div style={{ flex: 30 }}>
                     <Stack flexDirection='row' sx={{ mb: 1, ml: 2, mt: 2 }}>
-                        <Typography variant='h5'>Select Variable</Typography>
+                        <Typography variant='h5'>选择变量</Typography>
                     </Stack>
                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 220px)', overflowX: 'hidden' }}>
                         <Box sx={{ pl: 2, pr: 2 }}>

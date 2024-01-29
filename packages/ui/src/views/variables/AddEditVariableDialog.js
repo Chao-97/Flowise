@@ -30,12 +30,12 @@ const variableTypes = [
     {
         label: 'Static',
         name: 'static',
-        description: 'Variable value will be read from the value entered below'
+        description: '变量值将从下面输入的值中读取'
     },
     {
         label: 'Runtime',
         name: 'runtime',
-        description: 'Variable value will be read from .env file'
+        description: '变量值将从 .env 文件中读取'
     }
 ]
 
@@ -202,14 +202,14 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                             }}
                         />
                     </div>
-                    {dialogProps.type === 'ADD' ? 'Add Variable' : 'Edit Variable'}
+                    {dialogProps.type === 'ADD' ? '添加变量' : '编辑变量'}
                 </div>
             </DialogTitle>
             <DialogContent>
                 <Box sx={{ p: 2 }}>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <Typography>
-                            Variable Name<span style={{ color: 'red' }}>&nbsp;*</span>
+                            变量名<span style={{ color: 'red' }}>&nbsp;*</span>
                         </Typography>
 
                         <div style={{ flexGrow: 1 }}></div>
@@ -227,7 +227,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <Typography>
-                            Type<span style={{ color: 'red' }}>&nbsp;*</span>
+                            种类<span style={{ color: 'red' }}>&nbsp;*</span>
                         </Typography>
                         <div style={{ flexGrow: 1 }}></div>
                     </div>
@@ -236,14 +236,14 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         name='variableType'
                         options={variableTypes}
                         onSelect={(newValue) => setVariableType(newValue)}
-                        value={variableType ?? 'choose an option'}
+                        value={variableType ?? '选择一个选项'}
                     />
                 </Box>
                 {variableType === 'static' && (
                     <Box sx={{ p: 2 }}>
                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography>
-                                Value<span style={{ color: 'red' }}>&nbsp;*</span>
+                                价值<span style={{ color: 'red' }}>&nbsp;*</span>
                             </Typography>
                             <div style={{ flexGrow: 1 }}></div>
                         </div>
