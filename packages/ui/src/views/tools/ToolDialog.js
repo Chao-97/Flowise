@@ -394,7 +394,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                     <div style={{ flex: 1 }} />
                     {dialogProps.type === 'EDIT' && (
                         <Button variant='outlined' onClick={() => exportTool()} startIcon={<IconFileExport />}>
-                            Export
+                            导出
                         </Button>
                     )}
                 </div>
@@ -403,7 +403,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Tool Name
+                            工具名称
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
@@ -429,7 +429,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'Description of what the tool does. This is for ChatGPT to determine when to use this tool.'}
+                                title={'描述该工具的用途。这是为了让ChatGPT确定何时使用该工具。'}
                             />
                         </Typography>
                     </Stack>
@@ -438,7 +438,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                         type='string'
                         fullWidth
                         disabled={dialogProps.type === 'TEMPLATE'}
-                        placeholder='Description of what the tool does. This is for ChatGPT to determine when to use this tool.'
+                        placeholder='描述该工具的用途。这是为了让 ChatGPT 确定何时使用该工具。'
                         multiline={true}
                         rows={3}
                         value={toolDesc}
@@ -464,7 +464,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Output Schema
+                            输出模式
                             <TooltipWithParser style={{ marginLeft: 10 }} title={'What should be the output response in JSON format?'} />
                         </Typography>
                     </Stack>
@@ -479,7 +479,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Javascript Function
+                            Javascript 函数
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
                                 title='Function to execute when tool is being used. You can use properties specified in Output Schema as variables. For example, if the property is <code>userid</code>, you can use as <code>$userid</code>. Return value must be a string. You can also override the code from API by following this <a target="_blank" href="https://docs.flowiseai.com/tools/custom-tool#override-function-from-api">guide</a>'

@@ -137,72 +137,32 @@ const Models = () => {
         <>
             <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
                 <Stack flexDirection='row'>
-                    <h1>Marketplace</h1>
+                    <h1>模型</h1>
                 </Stack>
-                <Tabs sx={{ mb: 2 }} variant='fullWidth' value={value} onChange={handleChange} aria-label='tabs'>
-                    {tabItems.map((item, index) => (
-                        <Tab
-                            key={index}
-                            icon={index === 0 ? <IconHierarchy /> : <IconTool />}
-                            iconPosition='start'
-                            label={<span style={{ fontSize: '1.1rem' }}>{item}</span>}
-                        />
-                    ))}
-                </Tabs>
-                {tabItems.map((item, index) => (
-                    <TabPanel key={index} value={value} index={index}>
-                        {item === 'Chatflows' && (
-                            <Grid container spacing={gridSpacing}>
-                                {!isChatflowsLoading &&
-                                    getAllChatflowsMarketplacesApi.data &&
-                                    getAllChatflowsMarketplacesApi.data.map((data, index) => (
-                                        <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-                                            {data.badge && (
-                                                <Badge
-                                                    sx={{
-                                                        '& .MuiBadge-badge': {
-                                                            right: 20
-                                                        }
-                                                    }}
-                                                    badgeContent={data.badge}
-                                                    color={data.badge === 'POPULAR' ? 'primary' : 'error'}
-                                                >
-                                                    <ItemCard onClick={() => goToCanvas(data)} data={data} images={images[data.id]} />
-                                                </Badge>
-                                            )}
-                                            {!data.badge && (
-                                                <ItemCard onClick={() => goToCanvas(data)} data={data} images={images[data.id]} />
-                                            )}
-                                        </Grid>
-                                    ))}
-                            </Grid>
-                        )}
-                        {item === 'Tools' && (
-                            <Grid container spacing={gridSpacing}>
-                                {!isToolsLoading &&
-                                    getAllToolsMarketplacesApi.data &&
-                                    getAllToolsMarketplacesApi.data.map((data, index) => (
-                                        <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-                                            {data.badge && (
-                                                <Badge
-                                                    sx={{
-                                                        '& .MuiBadge-badge': {
-                                                            right: 20
-                                                        }
-                                                    }}
-                                                    badgeContent={data.badge}
-                                                    color={data.badge === 'POPULAR' ? 'primary' : 'error'}
-                                                >
-                                                    <ItemCard data={data} onClick={() => goToTool(data)} />
-                                                </Badge>
-                                            )}
-                                            {!data.badge && <ItemCard data={data} onClick={() => goToTool(data)} />}
-                                        </Grid>
-                                    ))}
-                            </Grid>
-                        )}
-                    </TabPanel>
-                ))}
+                <TabPanel>
+                    <Grid container spacing={gridSpacing}>
+                        {!isChatflowsLoading &&
+                            getAllChatflowsMarketplacesApi.data &&
+                            getAllChatflowsMarketplacesApi.data.map((data, index) => (
+                                <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
+                                    {data.badge && (
+                                        <Badge
+                                            sx={{
+                                                '& .MuiBadge-badge': {
+                                                    right: 20
+                                                }
+                                            }}
+                                            badgeContent={data.badge}
+                                            color={data.badge === 'POPULAR' ? 'primary' : 'error'}
+                                        >
+                                            <ItemCard onClick={() => goToCanvas(data)} data={data} images={images[data.id]} />
+                                        </Badge>
+                                    )}
+                                    {!data.badge && <ItemCard onClick={() => goToCanvas(data)} data={data} images={images[data.id]} />}
+                                </Grid>
+                            ))}
+                    </Grid>
+                </TabPanel>
                 {((!isChatflowsLoading && (!getAllChatflowsMarketplacesApi.data || getAllChatflowsMarketplacesApi.data.length === 0)) ||
                     (!isToolsLoading && (!getAllToolsMarketplacesApi.data || getAllToolsMarketplacesApi.data.length === 0))) && (
                     <Stack sx={{ alignItems: 'center', justifyContent: 'center' }} flexDirection='column'>

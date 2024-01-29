@@ -56,7 +56,7 @@ const Marketplace = () => {
     const [isChatflowsLoading, setChatflowsLoading] = useState(true)
     const [isToolsLoading, setToolsLoading] = useState(true)
     const [images, setImages] = useState({})
-    const tabItems = ['Chatflows', 'Tools']
+    const tabItems = ['聊天流', '工具']
     const [value, setValue] = useState(0)
     const [showToolDialog, setShowToolDialog] = useState(false)
     const [toolDialogProps, setToolDialogProps] = useState({})
@@ -66,10 +66,10 @@ const Marketplace = () => {
 
     const onUseTemplate = (selectedTool) => {
         const dialogProp = {
-            title: 'Add New Tool',
+            title: '创建新工具',
             type: 'IMPORT',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add',
+            cancelButtonName: '取消',
+            confirmButtonName: '添加',
             data: selectedTool
         }
         setToolDialogProps(dialogProp)
@@ -137,7 +137,7 @@ const Marketplace = () => {
         <>
             <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
                 <Stack flexDirection='row'>
-                    <h1>Marketplace</h1>
+                    <h1>市场</h1>
                 </Stack>
                 <Tabs sx={{ mb: 2 }} variant='fullWidth' value={value} onChange={handleChange} aria-label='tabs'>
                     {tabItems.map((item, index) => (
@@ -151,7 +151,7 @@ const Marketplace = () => {
                 </Tabs>
                 {tabItems.map((item, index) => (
                     <TabPanel key={index} value={value} index={index}>
-                        {item === 'Chatflows' && (
+                        {item === '聊天流' && (
                             <Grid container spacing={gridSpacing}>
                                 {!isChatflowsLoading &&
                                     getAllChatflowsMarketplacesApi.data &&
@@ -177,7 +177,7 @@ const Marketplace = () => {
                                     ))}
                             </Grid>
                         )}
-                        {item === 'Tools' && (
+                        {item === '工具' && (
                             <Grid container spacing={gridSpacing}>
                                 {!isToolsLoading &&
                                     getAllToolsMarketplacesApi.data &&
@@ -213,7 +213,7 @@ const Marketplace = () => {
                                 alt='WorkflowEmptySVG'
                             />
                         </Box>
-                        <div>No Marketplace Yet</div>
+                        <div>暂无市场</div>
                     </Stack>
                 )}
             </MainCard>
