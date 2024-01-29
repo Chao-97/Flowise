@@ -1,8 +1,8 @@
 // assets
-import { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable } from '@tabler/icons'
+import { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d } from '@tabler/icons'
 
 // constant
-const icons = { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable }
+const icons = { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d }
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -25,6 +25,14 @@ const dashboard = {
             type: 'item',
             url: '/marketplaces',
             icon: icons.IconBuildingStore,
+            breadcrumbs: true
+        },
+        {
+            id: 'models',
+            title: '模型',
+            type: 'item',
+            url: '/models',
+            icon: icons.IconFile3d,
             breadcrumbs: true
         },
         {
