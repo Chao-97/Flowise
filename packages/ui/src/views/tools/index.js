@@ -38,10 +38,10 @@ const Tools = () => {
     const onUploadFile = (file) => {
         try {
             const dialogProp = {
-                title: '添加新的工具',
+                title: 'Add New Tool',
                 type: 'IMPORT',
-                cancelButtonName: '取消',
-                confirmButtonName: '保存',
+                cancelButtonName: 'Cancel',
+                confirmButtonName: 'Save',
                 data: JSON.parse(file)
             }
             setDialogProps(dialogProp)
@@ -69,10 +69,10 @@ const Tools = () => {
 
     const addNew = () => {
         const dialogProp = {
-            title: '添加新的工具',
+            title: 'Add New Tool',
             type: 'ADD',
-            cancelButtonName: '取消',
-            confirmButtonName: '添加'
+            cancelButtonName: 'Cancel',
+            confirmButtonName: 'Add'
         }
         setDialogProps(dialogProp)
         setShowDialog(true)
@@ -80,10 +80,10 @@ const Tools = () => {
 
     const edit = (selectedTool) => {
         const dialogProp = {
-            title: '编辑工具',
+            title: 'Edit Tool',
             type: 'EDIT',
-            cancelButtonName: '取消',
-            confirmButtonName: '保存',
+            cancelButtonName: 'Cancel',
+            confirmButtonName: 'Save',
             data: selectedTool
         }
         setDialogProps(dialogProp)
@@ -105,7 +105,7 @@ const Tools = () => {
         <>
             <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
                 <Stack flexDirection='row'>
-                    <h1 style={{ width: '90px' }}>工具</h1>
+                    <h1>工具</h1>
                     <Grid sx={{ mb: 1.25 }} container direction='row'>
                         <Box sx={{ flexGrow: 1 }} />
                         <Grid item>
@@ -115,11 +115,11 @@ const Tools = () => {
                                 onClick={() => inputRef.current.click()}
                                 startIcon={<IconFileImport />}
                             >
-                                加载
+                                导入
                             </Button>
                             <input ref={inputRef} type='file' hidden accept='.json' onChange={(e) => handleFileUpload(e)} />
                             <StyledButton variant='contained' sx={{ color: 'white' }} onClick={addNew} startIcon={<IconPlus />}>
-                                创建
+                                新建
                             </StyledButton>
                         </Grid>
                     </Grid>
@@ -138,7 +138,7 @@ const Tools = () => {
                         <Box sx={{ p: 2, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={ToolEmptySVG} alt='ToolEmptySVG' />
                         </Box>
-                        <div>尚未创建工具</div>
+                        <div>暂未新建</div>
                     </Stack>
                 )}
             </MainCard>

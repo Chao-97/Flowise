@@ -395,6 +395,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                     {dialogProps.type === 'EDIT' && (
                         <Button variant='outlined' onClick={() => exportTool()} startIcon={<IconFileExport />}>
                             导出
+                            导出
                         </Button>
                     )}
                 </div>
@@ -403,6 +404,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
+                            工具名称
                             工具名称
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                             <TooltipWithParser style={{ marginLeft: 10 }} title={'工具名称必须是小写字母并带有下划线. 例如: my_tool'} />
@@ -426,7 +428,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'描述该工具的用途。这是为了让 ChatGPT 确定何时使用该工具'}
+                                title={'描述该工具的用途。这是为了让ChatGPT确定何时使用该工具。'}
                             />
                         </Typography>
                     </Stack>
@@ -435,7 +437,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                         type='string'
                         fullWidth
                         disabled={dialogProps.type === 'TEMPLATE'}
-                        placeholder='描述该工具的用途。这是为了让 ChatGPT 确定何时使用该工具'
+                        placeholder='描述该工具的用途。这是为了让 ChatGPT 确定何时使用该工具。'
                         multiline={true}
                         rows={3}
                         value={toolDesc}
@@ -461,8 +463,8 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            输出模板
-                            <TooltipWithParser style={{ marginLeft: 10 }} title={'JSON 格式的输出响应应该是什么?'} />
+                            输出模式
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'What should be the output response in JSON format?'} />
                         </Typography>
                     </Stack>
                     <Grid
@@ -476,6 +478,7 @@ const ToolDialog = ({ show, dialogProps, onUseTemplate, onCancel, onConfirm }) =
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
+                            Javascript 函数
                             Javascript 函数
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}

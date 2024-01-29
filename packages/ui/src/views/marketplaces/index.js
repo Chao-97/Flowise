@@ -66,7 +66,7 @@ const Marketplace = () => {
 
     const onUseTemplate = (selectedTool) => {
         const dialogProp = {
-            title: '添加新的工具',
+            title: '创建新工具',
             type: 'IMPORT',
             cancelButtonName: '取消',
             confirmButtonName: '添加',
