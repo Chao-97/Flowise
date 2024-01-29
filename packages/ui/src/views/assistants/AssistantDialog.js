@@ -414,10 +414,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                                助手名称
+                            Assistant Name
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'助手的名称，最大长度为 256 个字符'}
+                                title={'The name of the assistant. The maximum length is 256 characters.'}
                             />
                         </Typography>
                     </Stack>
@@ -425,7 +425,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         id='assistantName'
                         type='string'
                         fullWidth
-                        placeholder='我的新助手'
+                        placeholder='My New Assistant'
                         value={assistantName}
                         name='assistantName'
                         onChange={(e) => setAssistantName(e.target.value)}
@@ -434,10 +434,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                                助手描述
+                            Assistant Description
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'助手的描述，最大长度为 512 个字符'}
+                                title={'The description of the assistant. The maximum length is 512 characters.'}
                             />
                         </Typography>
                     </Stack>
@@ -445,7 +445,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         id='assistantDesc'
                         type='string'
                         fullWidth
-                        placeholder='助手功能的描述'
+                        placeholder='Description of what the Assistant does'
                         multiline={true}
                         rows={3}
                         value={assistantDesc}
@@ -455,7 +455,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 </Box>
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
-                        <Typography variant='overline'>助手图标源</Typography>
+                        <Typography variant='overline'>Assistant Icon Src</Typography>
                     </Stack>
                     <div
                         style={{
@@ -481,7 +481,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         id='assistantIcon'
                         type='string'
                         fullWidth
-                        placeholder={``}
+                        placeholder={`https://api.dicebear.com/7.x/bottts/svg?seed=${uuidv4()}`}
                         value={assistantIcon}
                         name='assistantIcon'
                         onChange={(e) => setAssistantIcon(e.target.value)}
@@ -505,7 +505,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            OpenAI 凭据
+                            OpenAI Credential
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                         </Typography>
                     </Stack>
@@ -524,10 +524,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                                助手指导
+                            Assistant Instruction
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'助手使用的系统指令，最大长度为 32768 个字符。'}
+                                title={'The system instructions that the assistant uses. The maximum length is 32768 characters.'}
                             />
                         </Typography>
                     </Stack>
@@ -535,7 +535,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         id='assistantInstructions'
                         type='string'
                         fullWidth
-                        placeholder='您是一名私人数学导师。当被问到问题时，编写并运行 Python 代码来回答问题。'
+                        placeholder='You are a personal math tutor. When asked a question, write and run Python code to answer the question.'
                         multiline={true}
                         rows={3}
                         value={assistantInstructions}
@@ -546,10 +546,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                                辅助工具
+                            Assistant Tools
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title='助手上启用的工具列表。每个助手最多可以有 128 个工具。'
+                                title='A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant.'
                             />
                         </Typography>
                     </Stack>
@@ -558,11 +558,11 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         name={JSON.stringify(assistantTools)}
                         options={[
                             {
-                                label: '代码解释器',
+                                label: 'Code Interpreter',
                                 name: 'code_interpreter'
                             },
                             {
-                                label: '恢复',
+                                label: 'Retrieval',
                                 name: 'retrieval'
                             }
                         ]}
@@ -573,10 +573,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            知识档案
+                            Knowledge Files
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title='允许助手使用上传文件中的内容进行检索和代码解释。最多:20 个文件'
+                                title='Allow assistant to use the content from uploaded files for retrieval and code interpreter. MAX: 20 files'
                             />
                         </Typography>
                     </Stack>
@@ -610,19 +610,19 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         key={uploadAssistantFiles}
                         fileType='*'
                         onChange={(newValue) => setUploadAssistantFiles(newValue)}
-                        value={uploadAssistantFiles ?? '选择要上传的文件'}
+                        value={uploadAssistantFiles ?? 'Choose a file to upload'}
                     />
                 </Box>
             </DialogContent>
             <DialogActions>
                 {dialogProps.type === 'EDIT' && (
                     <StyledButton color='secondary' variant='contained' onClick={() => onSyncClick()}>
-                        同步
+                        Sync
                     </StyledButton>
                 )}
                 {dialogProps.type === 'EDIT' && (
                     <StyledButton color='error' variant='contained' onClick={() => onDeleteClick()}>
-                        删除
+                        Delete
                     </StyledButton>
                 )}
                 <StyledButton

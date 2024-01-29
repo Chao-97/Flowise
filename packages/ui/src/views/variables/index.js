@@ -176,12 +176,12 @@ const Variables = () => {
                                 width: '100%'
                             }}
                         >
-                            <h1 style={{width:'100px'}}>变量&nbsp;</h1>
+                            <h1>Variables&nbsp;</h1>
                             <TextField
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                                 variant='outlined'
-                                placeholder='搜索变量名'
+                                placeholder='Search variable name'
                                 onChange={onSearchChange}
                                 InputProps={{
                                     startAdornment: (
@@ -193,7 +193,7 @@ const Variables = () => {
                             />
                             <Box sx={{ flexGrow: 1 }} />
                             <Button variant='outlined' sx={{ mr: 2 }} onClick={() => setShowHowToDialog(true)}>
-                                如何使用
+                                How To Use
                             </Button>
                             <ButtonGroup
                                 sx={{ maxHeight: 40 }}
@@ -208,7 +208,7 @@ const Variables = () => {
                                         onClick={addNew}
                                         startIcon={<IconPlus />}
                                     >
-                                        添加变量
+                                        Add Variable
                                     </StyledButton>
                                 </ButtonGroup>
                             </ButtonGroup>
@@ -224,7 +224,7 @@ const Variables = () => {
                                 alt='VariablesEmptySVG'
                             />
                         </Box>
-                        <div>暂无变量</div>
+                        <div>No Variables Yet</div>
                     </Stack>
                 )}
                 {variables.length > 0 && (
@@ -232,11 +232,11 @@ const Variables = () => {
                         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>名称</TableCell>
-                                    <TableCell>值</TableCell>
-                                    <TableCell>类型</TableCell>
-                                    <TableCell>最新时间</TableCell>
-                                    <TableCell>已创建</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Value</TableCell>
+                                    <TableCell>Type</TableCell>
+                                    <TableCell>Last Updated</TableCell>
+                                    <TableCell>Created</TableCell>
                                     <TableCell> </TableCell>
                                     <TableCell> </TableCell>
                                 </TableRow>
