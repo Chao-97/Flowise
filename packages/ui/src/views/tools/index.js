@@ -38,10 +38,10 @@ const Tools = () => {
     const onUploadFile = (file) => {
         try {
             const dialogProp = {
-                title: 'Add New Tool',
+                title: '添加新工具',
                 type: 'IMPORT',
-                cancelButtonName: 'Cancel',
-                confirmButtonName: 'Save',
+                cancelButtonName: '取消',
+                confirmButtonName: '储存',
                 data: JSON.parse(file)
             }
             setDialogProps(dialogProp)
@@ -105,7 +105,7 @@ const Tools = () => {
         <>
             <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
                 <Stack flexDirection='row'>
-                    <h1 style={{width:'100px'}}>工具</h1>
+                    <h1 style={{ width: '100px' }}>工具</h1>
                     <Grid sx={{ mb: 1.25 }} container direction='row'>
                         <Box sx={{ flexGrow: 1 }} />
                         <Grid item>
