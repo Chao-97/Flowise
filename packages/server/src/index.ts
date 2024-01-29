@@ -1246,6 +1246,37 @@ export class App {
         })
 
         // ----------------------------------------
+        // Models
+        // ----------------------------------------
+
+        // Get all Models
+        this.app.get('/api/v1/models', async (req: Request, res: Response) => {
+            const modelDir = path.join(__dirname, '..', 'models')
+            const jsonsInDir = fs.readdirSync(modelDir).filter((file) => path.extname(file) === '.json')
+            const templates: any[] = []
+            jsonsInDir.forEach((file, index) => {
+                const filePath = path.join(__dirname, '..', 'models', file)
+                const fileData = fs.readFileSync(filePath)
+                const fileDataObj = JSON.parse(fileData.toString())
+                const template = {
+                    id: index,
+                    name: file.split('.json')[0],
+                    flowData: fileData.toString(),
+                    badge: fileDataObj?.badge,
+                    description: fileDataObj?.description || ''
+                }
+                templates.push(template)
+            })
+            const FlowiseDocsQnA = templates.find((tmp) => tmp.name === 'Flowise Docs QnA')
+            const FlowiseDocsQnAIndex = templates.findIndex((tmp) => tmp.name === 'Flowise Docs QnA')
+            if (FlowiseDocsQnA && FlowiseDocsQnAIndex > 0) {
+                templates.splice(FlowiseDocsQnAIndex, 1)
+                templates.unshift(FlowiseDocsQnA)
+            }
+            return res.json(templates)
+        })
+
+        // ----------------------------------------
         // Variables
         // ----------------------------------------
         this.app.get('/api/v1/variables', async (req: Request, res: Response) => {

@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 // material-ui
-import { Grid, Box, Stack, Tabs, Tab, Badge } from '@mui/material'
+import { Grid, Box, Stack, Badge } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { IconHierarchy, IconTool } from '@tabler/icons'
+// import { IconHierarchy, IconTool } from '@tabler/icons'
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard'
@@ -16,7 +16,7 @@ import WorkflowEmptySVG from 'assets/images/workflow_empty.svg'
 import ToolDialog from 'views/tools/ToolDialog'
 
 // API
-import marketplacesApi from 'api/marketplaces'
+import modelsApi from 'api/models'
 
 // Hooks
 import useApi from 'hooks/useApi'
@@ -56,17 +56,16 @@ const Models = () => {
     const [isChatflowsLoading, setChatflowsLoading] = useState(true)
     const [isToolsLoading, setToolsLoading] = useState(true)
     const [images, setImages] = useState({})
-    const tabItems = ['Chatflows', 'Tools']
-    const [value, setValue] = useState(0)
+    // const tabItems = ['Chatflows', 'Tools']
+    // const [value, setValue] = useState(0)
     const [showToolDialog, setShowToolDialog] = useState(false)
     const [toolDialogProps, setToolDialogProps] = useState({})
 
-    const getAllChatflowsMarketplacesApi = useApi(marketplacesApi.getAllChatflowsMarketplaces)
-    const getAllToolsMarketplacesApi = useApi(marketplacesApi.getAllToolsMarketplaces)
+    const getAllModes = useApi(modelsApi.getAllModels)
 
     const onUseTemplate = (selectedTool) => {
         const dialogProp = {
-            title: 'Add New Tool',
+            title: '添加新的工具',
             type: 'IMPORT',
             cancelButtonName: 'Cancel',
             confirmButtonName: 'Add',
@@ -76,43 +75,43 @@ const Models = () => {
         setShowToolDialog(true)
     }
 
-    const goToTool = (selectedTool) => {
-        const dialogProp = {
-            title: selectedTool.templateName,
-            type: 'TEMPLATE',
-            data: selectedTool
-        }
-        setToolDialogProps(dialogProp)
-        setShowToolDialog(true)
-    }
+    // const goToTool = (selectedTool) => {
+    //     const dialogProp = {
+    //         title: selectedTool.templateName,
+    //         type: 'TEMPLATE',
+    //         data: selectedTool
+    //     }
+    //     setToolDialogProps(dialogProp)
+    //     setShowToolDialog(true)
+    // }
 
     const goToCanvas = (selectedChatflow) => {
         navigate(`/marketplace/${selectedChatflow.id}`, { state: selectedChatflow })
     }
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue)
-    }
+    // const handleChange = (event, newValue) => {
+    //     setValue(newValue)
+    // }
 
     useEffect(() => {
-        getAllChatflowsMarketplacesApi.request()
-        getAllToolsMarketplacesApi.request()
+        getAllModes.request()
+        // getAllToolsMarketplacesApi.request()
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-        setChatflowsLoading(getAllChatflowsMarketplacesApi.loading)
-    }, [getAllChatflowsMarketplacesApi.loading])
+        setChatflowsLoading(getAllModes.loading)
+    }, [getAllModes.loading])
+
+    // useEffect(() => {
+    //     setToolsLoading(getAllToolsMarketplacesApi.loading)
+    // }, [getAllToolsMarketplacesApi.loading])
 
     useEffect(() => {
-        setToolsLoading(getAllToolsMarketplacesApi.loading)
-    }, [getAllToolsMarketplacesApi.loading])
-
-    useEffect(() => {
-        if (getAllChatflowsMarketplacesApi.data) {
+        if (getAllModes.data) {
             try {
-                const chatflows = getAllChatflowsMarketplacesApi.data
+                const chatflows = getAllModes.data
                 const images = {}
                 for (let i = 0; i < chatflows.length; i += 1) {
                     const flowDataStr = chatflows[i].flowData
@@ -131,7 +130,7 @@ const Models = () => {
                 console.error(e)
             }
         }
-    }, [getAllChatflowsMarketplacesApi.data])
+    }, [getAllModes.data])
 
     return (
         <>
@@ -142,8 +141,8 @@ const Models = () => {
                 <TabPanel>
                     <Grid container spacing={gridSpacing}>
                         {!isChatflowsLoading &&
-                            getAllChatflowsMarketplacesApi.data &&
-                            getAllChatflowsMarketplacesApi.data.map((data, index) => (
+                            getAllModes.data &&
+                            getAllModes.data.map((data, index) => (
                                 <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
                                     {data.badge && (
                                         <Badge
@@ -163,7 +162,7 @@ const Models = () => {
                             ))}
                     </Grid>
                 </TabPanel>
-                {((!isChatflowsLoading && (!getAllChatflowsMarketplacesApi.data || getAllChatflowsMarketplacesApi.data.length === 0)) ||
+                {((!isChatflowsLoading && (!getAllModes.data || getAllModes.data.length === 0)) ||
                     (!isToolsLoading && (!getAllToolsMarketplacesApi.data || getAllToolsMarketplacesApi.data.length === 0))) && (
                     <Stack sx={{ alignItems: 'center', justifyContent: 'center' }} flexDirection='column'>
                         <Box sx={{ p: 2, height: 'auto' }}>
@@ -173,7 +172,7 @@ const Models = () => {
                                 alt='WorkflowEmptySVG'
                             />
                         </Box>
-                        <div>No Marketplace Yet</div>
+                        <div>暂时还没有模型</div>
                     </Stack>
                 )}
             </MainCard>
