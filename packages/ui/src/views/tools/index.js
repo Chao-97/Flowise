@@ -115,11 +115,11 @@ const Tools = () => {
                                 onClick={() => inputRef.current.click()}
                                 startIcon={<IconFileImport />}
                             >
-                                导入
+                                Load
                             </Button>
                             <input ref={inputRef} type='file' hidden accept='.json' onChange={(e) => handleFileUpload(e)} />
                             <StyledButton variant='contained' sx={{ color: 'white' }} onClick={addNew} startIcon={<IconPlus />}>
-                                新建
+                                Create
                             </StyledButton>
                         </Grid>
                     </Grid>
@@ -138,7 +138,7 @@ const Tools = () => {
                         <Box sx={{ p: 2, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={ToolEmptySVG} alt='ToolEmptySVG' />
                         </Box>
-                        <div>暂未新建</div>
+                        <div>No Tools Created Yet</div>
                     </Stack>
                 )}
             </MainCard>
