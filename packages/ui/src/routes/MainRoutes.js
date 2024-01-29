@@ -28,6 +28,9 @@ const Credentials = Loadable(lazy(() => import('views/credentials')))
 // variables routing
 const Variables = Loadable(lazy(() => import('views/variables')))
 
+// variables routing
+const Doc = Loadable(lazy(() => import('views/doc')))
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -69,6 +72,10 @@ const MainRoutes = {
         {
             path: '/variables',
             element: <Variables />
+        },
+        {
+            path: '/doc',
+            element: <Doc />
         }
     ]
 }
