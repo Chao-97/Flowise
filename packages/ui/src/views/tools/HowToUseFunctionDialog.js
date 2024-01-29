@@ -15,13 +15,13 @@ const HowToUseFunctionDialog = ({ show, onCancel }) => {
             aria-describedby='alert-dialog-description'
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
-                How To Use Function
+                怎样使用函数
             </DialogTitle>
             <DialogContent>
                 <ul>
-                    <li style={{ marginTop: 10 }}>You can use any libraries imported in Flowise</li>
+                    <li style={{ marginTop: 10 }}>您可以使用 Flowise 中导入的任何库</li>
                     <li style={{ marginTop: 10 }}>
-                        You can use properties specified in Output Schema as variables with prefix $:
+                        您可以使用带有前缀 $ 的变量作为指定的属性在输出模版中:
                         <ul style={{ marginTop: 10 }}>
                             <li>
                                 Property = <code>userid</code>
@@ -32,7 +32,7 @@ const HowToUseFunctionDialog = ({ show, onCancel }) => {
                         </ul>
                     </li>
                     <li style={{ marginTop: 10 }}>
-                        You can get default flow config:
+                        您可以获取默认配置:
                         <ul style={{ marginTop: 10 }}>
                             <li>
                                 <code>$flow.sessionId</code>
@@ -49,9 +49,9 @@ const HowToUseFunctionDialog = ({ show, onCancel }) => {
                         </ul>
                     </li>
                     <li style={{ marginTop: 10 }}>
-                        You can get custom variables:&nbsp;<code>{`$vars.<variable-name>`}</code>
+                        您可以获得自定义变量:&nbsp;<code>{`$vars.<variable-name>`}</code>
                     </li>
-                    <li style={{ marginTop: 10 }}>Must return a string value at the end of function</li>
+                    <li style={{ marginTop: 10 }}>必须在函数末尾返回一个字符串值</li>
                 </ul>
             </DialogContent>
         </Dialog>
