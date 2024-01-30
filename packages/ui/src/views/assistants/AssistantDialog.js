@@ -220,7 +220,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             const createResp = await assistantsApi.createNewAssistant(obj)
             if (createResp.data) {
                 enqueueSnackbar({
-                    message: 'New Assistant added',
+                    message: '添加了新助手',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -237,7 +237,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to add new Assistant: ${errorData}`,
+                message: `添加新助手失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -274,7 +274,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             const saveResp = await assistantsApi.updateAssistant(assistantId, obj)
             if (saveResp.data) {
                 enqueueSnackbar({
-                    message: 'Assistant saved',
+                    message: '助理已保存',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -291,7 +291,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to save Assistant: ${errorData}`,
+                message: `保存助手失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -315,7 +315,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             if (getResp.data) {
                 syncData(getResp.data)
                 enqueueSnackbar({
-                    message: 'Assistant successfully synced!',
+                    message: '助手已同步成功!',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -331,7 +331,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to sync Assistant: ${errorData}`,
+                message: `同步助手失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -349,9 +349,9 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
 
     const onDeleteClick = () => {
         setDeleteDialogProps({
-            title: `Delete Assistant`,
-            description: `Delete Assistant ${assistantName}?`,
-            cancelButtonName: 'Cancel'
+            title: `删除助手`,
+            description: `删除助手 ${assistantName}?`,
+            cancelButtonName: '取消'
         })
         setDeleteDialogOpen(true)
     }
@@ -362,7 +362,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             const delResp = await assistantsApi.deleteAssistant(assistantId, isDeleteBoth)
             if (delResp.data) {
                 enqueueSnackbar({
-                    message: 'Assistant deleted',
+                    message: '助手已删除',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -378,7 +378,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to delete Assistant: ${errorData}`,
+                message: `删除助手失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -414,18 +414,15 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Name
-                            <TooltipWithParser
-                                style={{ marginLeft: 10 }}
-                                title={'The name of the assistant. The maximum length is 256 characters.'}
-                            />
+                            助手姓名
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'助手名称. 最大长度为 256 个字.'} />
                         </Typography>
                     </Stack>
                     <OutlinedInput
                         id='assistantName'
                         type='string'
                         fullWidth
-                        placeholder='My New Assistant'
+                        placeholder='我的新助手'
                         value={assistantName}
                         name='assistantName'
                         onChange={(e) => setAssistantName(e.target.value)}
@@ -434,18 +431,15 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Description
-                            <TooltipWithParser
-                                style={{ marginLeft: 10 }}
-                                title={'The description of the assistant. The maximum length is 512 characters.'}
-                            />
+                            助手简介
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'助手的简介. 最大长度为 512 个字.'} />
                         </Typography>
                     </Stack>
                     <OutlinedInput
                         id='assistantDesc'
                         type='string'
                         fullWidth
-                        placeholder='Description of what the Assistant does'
+                        placeholder='助手功能的描述'
                         multiline={true}
                         rows={3}
                         value={assistantDesc}
@@ -455,7 +449,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 </Box>
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
-                        <Typography variant='overline'>Assistant Icon Src</Typography>
+                        <Typography variant='overline'>助手图标源</Typography>
                     </Stack>
                     <div
                         style={{
@@ -490,7 +484,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Model
+                            助理模型
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                         </Typography>
                     </Stack>
@@ -505,7 +499,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            OpenAI Credential
+                            OpenAI 证书
                             <span style={{ color: 'red' }}>&nbsp;*</span>
                         </Typography>
                     </Stack>
@@ -513,7 +507,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         key={assistantCredential}
                         data={assistantCredential ? { credential: assistantCredential } : {}}
                         inputParam={{
-                            label: 'Connect Credential',
+                            label: '连接证书',
                             name: 'credential',
                             type: 'credential',
                             credentialNames: ['openAIApi']
@@ -524,18 +518,15 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Instruction
-                            <TooltipWithParser
-                                style={{ marginLeft: 10 }}
-                                title={'The system instructions that the assistant uses. The maximum length is 32768 characters.'}
-                            />
+                            助手操作说明
+                            <TooltipWithParser style={{ marginLeft: 10 }} title={'助手使用的系统指令. 最大长度为 32768 个字.'} />
                         </Typography>
                     </Stack>
                     <OutlinedInput
                         id='assistantInstructions'
                         type='string'
                         fullWidth
-                        placeholder='You are a personal math tutor. When asked a question, write and run Python code to answer the question.'
+                        placeholder='您是一名私人数学老师。当被问到问题时，编写并运行 Python 代码来回答问题.'
                         multiline={true}
                         rows={3}
                         value={assistantInstructions}
@@ -546,11 +537,8 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Tools
-                            <TooltipWithParser
-                                style={{ marginLeft: 10 }}
-                                title='A list of tool enabled on the assistant. There can be a maximum of 128 tools per assistant.'
-                            />
+                            助手工具
+                            <TooltipWithParser style={{ marginLeft: 10 }} title='助手上启用的工具列表。每个助手最多可以有 128 个工具.' />
                         </Typography>
                     </Stack>
                     <MultiDropdown
@@ -558,11 +546,11 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         name={JSON.stringify(assistantTools)}
                         options={[
                             {
-                                label: 'Code Interpreter',
+                                label: '代码解释器',
                                 name: 'code_interpreter'
                             },
                             {
-                                label: 'Retrieval',
+                                label: '恢复',
                                 name: 'retrieval'
                             }
                         ]}
@@ -573,10 +561,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Knowledge Files
+                            知识库
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title='Allow assistant to use the content from uploaded files for retrieval and code interpreter. MAX: 20 files'
+                                title='允许助手使用上传文件中的内容进行检索和代码解释。最多：20 个文件'
                             />
                         </Typography>
                     </Stack>
@@ -610,19 +598,19 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         key={uploadAssistantFiles}
                         fileType='*'
                         onChange={(newValue) => setUploadAssistantFiles(newValue)}
-                        value={uploadAssistantFiles ?? 'Choose a file to upload'}
+                        value={uploadAssistantFiles ?? '选择要上传的文件'}
                     />
                 </Box>
             </DialogContent>
             <DialogActions>
                 {dialogProps.type === 'EDIT' && (
                     <StyledButton color='secondary' variant='contained' onClick={() => onSyncClick()}>
-                        Sync
+                        同步
                     </StyledButton>
                 )}
                 {dialogProps.type === 'EDIT' && (
                     <StyledButton color='error' variant='contained' onClick={() => onDeleteClick()}>
-                        Delete
+                        删除
                     </StyledButton>
                 )}
                 <StyledButton

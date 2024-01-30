@@ -104,7 +104,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm }) => 
             const createResp = await credentialsApi.createCredential(obj)
             if (createResp.data) {
                 enqueueSnackbar({
-                    message: 'New Credential added',
+                    message: '新证书已添加',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -120,7 +120,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm }) => 
         } catch (error) {
             const errorData = typeof err === 'string' ? err : err.response.data || `${err.response.status}: ${err.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to add new Credential: ${errorData}`,
+                message: `添加新证书失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -154,7 +154,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm }) => 
             const saveResp = await credentialsApi.updateCredential(credential.id, saveObj)
             if (saveResp.data) {
                 enqueueSnackbar({
-                    message: 'Credential saved',
+                    message: '证书已保存',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -170,7 +170,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm }) => 
         } catch (error) {
             const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
             enqueueSnackbar({
-                message: `Failed to save Credential: ${errorData}`,
+                message: `保存证书失败: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -245,7 +245,7 @@ const AddEditCredentialDialog = ({ show, dialogProps, onCancel, onConfirm }) => 
                     <Box sx={{ p: 2 }}>
                         <Stack sx={{ position: 'relative' }} direction='row'>
                             <Typography variant='overline'>
-                                Credential Name
+                                证书名称
                                 <span style={{ color: 'red' }}>&nbsp;*</span>
                             </Typography>
                         </Stack>

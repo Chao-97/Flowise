@@ -79,8 +79,8 @@ const Variables = () => {
     const addNew = () => {
         const dialogProp = {
             type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add',
+            cancelButtonName: '取消',
+            confirmButtonName: '添加',
             data: {}
         }
         setVariableDialogProps(dialogProp)
@@ -90,8 +90,8 @@ const Variables = () => {
     const edit = (variable) => {
         const dialogProp = {
             type: 'EDIT',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Save',
+            cancelButtonName: '取消',
+            confirmButtonName: '保存',
             data: variable
         }
         setVariableDialogProps(dialogProp)

@@ -85,10 +85,10 @@ function APIKeyRow(props) {
                         : `${props.apiKey.apiKey.substring(0, 2)}${'•'.repeat(18)}${props.apiKey.apiKey.substring(
                               props.apiKey.apiKey.length - 5
                           )}`}
-                    <IconButton title='Copy' color='success' onClick={props.onCopyClick}>
+                    <IconButton title='复制' color='success' onClick={props.onCopyClick}>
                         <IconCopy />
                     </IconButton>
-                    <IconButton title='Show' color='inherit' onClick={props.onShowAPIClick}>
+                    <IconButton title='展示' color='inherit' onClick={props.onShowAPIClick}>
                         {props.showApiKeys.includes(props.apiKey.apiKey) ? <IconEyeOff /> : <IconEye />}
                     </IconButton>
                     <Popover
@@ -105,7 +105,7 @@ function APIKeyRow(props) {
                         }}
                     >
                         <Typography variant='h6' sx={{ pl: 1, pr: 1, color: 'white', background: props.theme.palette.success.dark }}>
-                            Copied!
+                            已复制!
                         </Typography>
                     </Popover>
                 </TableCell>
@@ -119,12 +119,12 @@ function APIKeyRow(props) {
                 </TableCell>
                 <TableCell>{props.apiKey.createdAt}</TableCell>
                 <TableCell>
-                    <IconButton title='Edit' color='primary' onClick={props.onEditClick}>
+                    <IconButton title='编辑' color='primary' onClick={props.onEditClick}>
                         <IconEdit />
                     </IconButton>
                 </TableCell>
                 <TableCell>
-                    <IconButton title='Delete' color='error' onClick={props.onDeleteClick}>
+                    <IconButton title='删除' color='error' onClick={props.onDeleteClick}>
                         <IconTrash />
                     </IconButton>
                 </TableCell>
@@ -137,11 +137,9 @@ function APIKeyRow(props) {
                                 <Table aria-label='chatflow table'>
                                     <TableHead>
                                         <TableRow>
-                                            <StyledTableCell sx={{ width: '30%', borderTopLeftRadius: '15px' }}>
-                                                Chatflow Name
-                                            </StyledTableCell>
-                                            <StyledTableCell sx={{ width: '20%' }}>Modified On</StyledTableCell>
-                                            <StyledTableCell sx={{ width: '50%', borderTopRightRadius: '15px' }}>Category</StyledTableCell>
+                                            <StyledTableCell sx={{ width: '30%', borderTopLeftRadius: '15px' }}>聊天流名称</StyledTableCell>
+                                            <StyledTableCell sx={{ width: '20%' }}>修改于</StyledTableCell>
+                                            <StyledTableCell sx={{ width: '50%', borderTopRightRadius: '15px' }}>分类</StyledTableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -231,10 +229,10 @@ const APIKey = () => {
 
     const addNew = () => {
         const dialogProp = {
-            title: 'Add New API Key',
+            title: '添加新的 API Key',
             type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add'
+            cancelButtonName: '取消',
+            confirmButtonName: '添加'
         }
         setDialogProps(dialogProp)
         setShowDialog(true)
@@ -242,10 +240,10 @@ const APIKey = () => {
 
     const edit = (key) => {
         const dialogProp = {
-            title: 'Edit API Key',
+            title: '编辑 API Key',
             type: 'EDIT',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Save',
+            cancelButtonName: '取消',
+            confirmButtonName: '保存',
             key
         }
         setDialogProps(dialogProp)
@@ -254,13 +252,13 @@ const APIKey = () => {
 
     const deleteKey = async (key) => {
         const confirmPayload = {
-            title: `Delete`,
+            title: `删除`,
             description:
                 key.chatFlows.length === 0
-                    ? `Delete key [${key.keyName}] ? `
-                    : `Delete key [${key.keyName}] ?\n There are ${key.chatFlows.length} chatflows using this key.`,
-            confirmButtonName: 'Delete',
-            cancelButtonName: 'Cancel'
+                    ? `删除 key [${key.keyName}] ? `
+                    : `将删除 key [${key.keyName}] ?\n 总计 ${key.chatFlows.length} 聊天流在使用这个key.`,
+            confirmButtonName: '删除',
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -269,7 +267,7 @@ const APIKey = () => {
                 const deleteResp = await apiKeyApi.deleteAPI(key.id)
                 if (deleteResp.data) {
                     enqueueSnackbar({
-                        message: 'API key deleted',
+                        message: 'API key 已删除',
                         options: {
                             key: new Date().getTime() + Math.random(),
                             variant: 'success',
@@ -285,7 +283,7 @@ const APIKey = () => {
             } catch (error) {
                 const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
                 enqueueSnackbar({
-                    message: `Failed to delete API key: ${errorData}`,
+                    message: `删除 API key 失败: ${errorData} `,
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'error',
@@ -340,7 +338,7 @@ const APIKey = () => {
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                                 variant='outlined'
-                                placeholder='Search key name'
+                                placeholder='搜索 key '
                                 onChange={onSearchChange}
                                 InputProps={{
                                     startAdornment: (
@@ -364,7 +362,7 @@ const APIKey = () => {
                                         onClick={addNew}
                                         startIcon={<IconPlus />}
                                     >
-                                        Create Key
+                                        新建 Key
                                     </StyledButton>
                                 </ButtonGroup>
                             </ButtonGroup>
@@ -376,7 +374,7 @@ const APIKey = () => {
                         <Box sx={{ p: 2, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={APIEmptySVG} alt='APIEmptySVG' />
                         </Box>
-                        <div>No API Keys Yet</div>
+                        <div>还没有 API Keys</div>
                     </Stack>
                 )}
                 {apiKeys.length > 0 && (
@@ -384,10 +382,10 @@ const APIKey = () => {
                         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Key Name</TableCell>
+                                    <TableCell>Key</TableCell>
                                     <TableCell>API Key</TableCell>
-                                    <TableCell>Usage</TableCell>
-                                    <TableCell>Created</TableCell>
+                                    <TableCell>用途</TableCell>
+                                    <TableCell>创建时间</TableCell>
                                     <TableCell> </TableCell>
                                     <TableCell> </TableCell>
                                 </TableRow>

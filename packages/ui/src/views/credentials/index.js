@@ -82,7 +82,7 @@ const Credentials = () => {
 
     const listCredential = () => {
         const dialogProp = {
-            title: 'Add New Credential',
+            title: '添加新证书',
             componentsCredentials
         }
         setCredentialListDialogProps(dialogProp)
@@ -92,8 +92,8 @@ const Credentials = () => {
     const addNew = (credentialComponent) => {
         const dialogProp = {
             type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add',
+            cancelButtonName: '取消',
+            confirmButtonName: '添加',
             credentialComponent
         }
         setSpecificCredentialDialogProps(dialogProp)
@@ -103,8 +103,8 @@ const Credentials = () => {
     const edit = (credential) => {
         const dialogProp = {
             type: 'EDIT',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Save',
+            cancelButtonName: '取消',
+            confirmButtonName: '保存',
             data: credential
         }
         setSpecificCredentialDialogProps(dialogProp)
@@ -113,10 +113,10 @@ const Credentials = () => {
 
     const deleteCredential = async (credential) => {
         const confirmPayload = {
-            title: `Delete`,
-            description: `Delete credential ${credential.name}?`,
-            confirmButtonName: 'Delete',
-            cancelButtonName: 'Cancel'
+            title: `删除`,
+            description: `是否要删除证书 ${credential.name}?`,
+            confirmButtonName: '删除',
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -125,7 +125,7 @@ const Credentials = () => {
                 const deleteResp = await credentialsApi.deleteCredential(credential.id)
                 if (deleteResp.data) {
                     enqueueSnackbar({
-                        message: 'Credential deleted',
+                        message: '证书已删除',
                         options: {
                             key: new Date().getTime() + Math.random(),
                             variant: 'success',
@@ -141,7 +141,7 @@ const Credentials = () => {
             } catch (error) {
                 const errorData = error.response.data || `${error.response.status}: ${error.response.statusText}`
                 enqueueSnackbar({
-                    message: `Failed to delete Credential: ${errorData}`,
+                    message: `证书删除失败: ${errorData}`,
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'error',
@@ -204,7 +204,7 @@ const Credentials = () => {
                                 width: '100%'
                             }}
                         >
-                            <h1>Credentials&nbsp;</h1>
+                            <h1>证书&nbsp;</h1>
                             <TextField
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
@@ -233,7 +233,7 @@ const Credentials = () => {
                                         onClick={listCredential}
                                         startIcon={<IconPlus />}
                                     >
-                                        Add Credential
+                                        添加证书
                                     </StyledButton>
                                 </ButtonGroup>
                             </ButtonGroup>
@@ -249,7 +249,7 @@ const Credentials = () => {
                                 alt='CredentialEmptySVG'
                             />
                         </Box>
-                        <div>No Credentials Yet</div>
+                        <div>还未添加证书</div>
                     </Stack>
                 )}
                 {credentials.length > 0 && (
@@ -257,9 +257,9 @@ const Credentials = () => {
                         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Last Updated</TableCell>
-                                    <TableCell>Created</TableCell>
+                                    <TableCell>名称</TableCell>
+                                    <TableCell>上次修改时间</TableCell>
+                                    <TableCell>创建时间</TableCell>
                                     <TableCell> </TableCell>
                                     <TableCell> </TableCell>
                                 </TableRow>
@@ -300,12 +300,12 @@ const Credentials = () => {
                                         <TableCell>{moment(credential.updatedDate).format('DD-MMM-YY')}</TableCell>
                                         <TableCell>{moment(credential.createdDate).format('DD-MMM-YY')}</TableCell>
                                         <TableCell>
-                                            <IconButton title='Edit' color='primary' onClick={() => edit(credential)}>
+                                            <IconButton title='编辑' color='primary' onClick={() => edit(credential)}>
                                                 <IconEdit />
                                             </IconButton>
                                         </TableCell>
                                         <TableCell>
-                                            <IconButton title='Delete' color='error' onClick={() => deleteCredential(credential)}>
+                                            <IconButton title='删除' color='error' onClick={() => deleteCredential(credential)}>
                                                 <IconTrash />
                                             </IconButton>
                                         </TableCell>
