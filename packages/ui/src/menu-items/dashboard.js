@@ -1,8 +1,8 @@
 // assets
-import { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d } from '@tabler/icons'
+import { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d ,IconFileCode2} from '@tabler/icons'
 
 // constant
-const icons = { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d }
+const icons = { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d,IconFileCode2 }
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -73,6 +73,14 @@ const dashboard = {
             type: 'item',
             url: '/apikey',
             icon: icons.IconKey,
+            breadcrumbs: true
+        },
+        {
+            id: 'doc',
+            title: '文档',
+            type: 'item',
+            url: '/doc',
+            icon: icons.IconFileCode2,
             breadcrumbs: true
         }
     ]

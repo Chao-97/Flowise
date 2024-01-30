@@ -28,14 +28,14 @@ import { Dropdown } from '../../ui-component/dropdown/Dropdown'
 
 const variableTypes = [
     {
-        label: '静止的',
+        label: 'Static',
         name: 'static',
-        description: '变量值将从下面输入的值中读取'
+        description: 'Variable value will be read from the value entered below'
     },
     {
-        label: '运行',
+        label: 'Runtime',
         name: 'runtime',
-        description: '变量值将从 .env 文件中读取'
+        description: 'Variable value will be read from .env file'
     }
 ]
 
@@ -54,7 +54,7 @@ const AddEditVariableDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
     const [variableName, setVariableName] = useState('')
     const [variableValue, setVariableValue] = useState('')
     const [variableType, setVariableType] = useState('static')
-    const [dialogType, setDialogType] = useState('添加')
+    const [dialogType, setDialogType] = useState('ADD')
     const [variable, setVariable] = useState({})
 
     useEffect(() => {

@@ -434,10 +434,10 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Description
+                                助手描述
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
-                                title={'The description of the assistant. The maximum length is 512 characters.'}
+                                title={'助手的描述。最大长度为 512 个字符.'}
                             />
                         </Typography>
                     </Stack>
@@ -445,7 +445,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         id='assistantDesc'
                         type='string'
                         fullWidth
-                        placeholder='Description of what the Assistant does'
+                        placeholder='助手功能的描述'
                         multiline={true}
                         rows={3}
                         value={assistantDesc}
@@ -546,7 +546,7 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
                         <Typography variant='overline'>
-                            Assistant Tools
+                            助手工具
                             <TooltipWithParser
                                 style={{ marginLeft: 10 }}
                                 title='助手上启用的工具列表。每个助手最多可以有 128 个工具。'
@@ -558,11 +558,11 @@ const AssistantDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                         name={JSON.stringify(assistantTools)}
                         options={[
                             {
-                                label: 'Code Interpreter',
+                                label: '代码解释器',
                                 name: 'code_interpreter'
                             },
                             {
-                                label: 'Retrieval',
+                                label: '恢复',
                                 name: 'retrieval'
                             }
                         ]}

@@ -147,7 +147,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
             <DialogContent>
                 {dialogProps.type === 'EDIT' && (
                     <Box sx={{ p: 2 }}>
-                        <Typography variant='overline'>API Key</Typography>
+                        <Typography variant='overline'>API 密钥</Typography>
                         <Stack direction='row' sx={{ mb: 1 }}>
                             <Typography
                                 sx={{
@@ -188,7 +188,7 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
                                 }}
                             >
                                 <Typography variant='h6' sx={{ pl: 1, pr: 1, color: 'white', background: theme.palette.success.dark }}>
-                                    Copied!
+                                    已复制!
                                 </Typography>
                             </Popover>
                         </Stack>
@@ -197,13 +197,13 @@ const APIKeyDialog = ({ show, dialogProps, onCancel, onConfirm }) => {
 
                 <Box sx={{ p: 2 }}>
                     <Stack sx={{ position: 'relative' }} direction='row'>
-                        <Typography variant='overline'>Key Name</Typography>
+                        <Typography variant='overline'>密钥名称</Typography>
                     </Stack>
                     <OutlinedInput
                         id='keyName'
                         type='string'
                         fullWidth
-                        placeholder='My New Key'
+                        placeholder='我的新密钥'
                         value={keyName}
                         name='keyName'
                         onChange={(e) => setKeyName(e.target.value)}

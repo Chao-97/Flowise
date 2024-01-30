@@ -105,7 +105,7 @@ function APIKeyRow(props) {
                         }}
                     >
                         <Typography variant='h6' sx={{ pl: 1, pr: 1, color: 'white', background: props.theme.palette.success.dark }}>
-                            Copied!
+                            已复制!
                         </Typography>
                     </Popover>
                 </TableCell>
@@ -231,10 +231,10 @@ const APIKey = () => {
 
     const addNew = () => {
         const dialogProp = {
-            title: 'Add New API Key',
+            title: '创建新的密钥',
             type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add'
+            cancelButtonName: '取消',
+            confirmButtonName: '添加'
         }
         setDialogProps(dialogProp)
         setShowDialog(true)
@@ -242,10 +242,10 @@ const APIKey = () => {
 
     const edit = (key) => {
         const dialogProp = {
-            title: 'Edit API Key',
-            type: 'EDIT',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Save',
+            title: '编辑密钥',
+            type: '编辑',
+            cancelButtonName: '取消',
+            confirmButtonName: '储存',
             key
         }
         setDialogProps(dialogProp)
@@ -335,12 +335,12 @@ const APIKey = () => {
                                 width: '100%'
                             }}
                         >
-                            <h1>API Keys&nbsp;</h1>
+                            <h1>API 密钥&nbsp;</h1>
                             <TextField
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                                 variant='outlined'
-                                placeholder='Search key name'
+                                placeholder='搜索密钥名称'
                                 onChange={onSearchChange}
                                 InputProps={{
                                     startAdornment: (
@@ -364,7 +364,7 @@ const APIKey = () => {
                                         onClick={addNew}
                                         startIcon={<IconPlus />}
                                     >
-                                        Create Key
+                                        创建
                                     </StyledButton>
                                 </ButtonGroup>
                             </ButtonGroup>
@@ -376,7 +376,7 @@ const APIKey = () => {
                         <Box sx={{ p: 2, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={APIEmptySVG} alt='APIEmptySVG' />
                         </Box>
-                        <div>No API Keys Yet</div>
+                        <div>暂无 API 密钥</div>
                     </Stack>
                 )}
                 {apiKeys.length > 0 && (
@@ -384,10 +384,10 @@ const APIKey = () => {
                         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Key Name</TableCell>
-                                    <TableCell>API Key</TableCell>
-                                    <TableCell>Usage</TableCell>
-                                    <TableCell>Created</TableCell>
+                                    <TableCell>密钥名称</TableCell>
+                                    <TableCell>API 密钥</TableCell>
+                                    <TableCell>用法</TableCell>
+                                    <TableCell>已创建</TableCell>
                                     <TableCell> </TableCell>
                                     <TableCell> </TableCell>
                                 </TableRow>

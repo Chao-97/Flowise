@@ -49,7 +49,7 @@ import HowToUseVariablesDialog from './HowToUseVariablesDialog'
 
 // ==============================|| Credentials ||============================== //
 
-const Variables = () => {
+const Doc = () => {
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
 
@@ -80,7 +80,7 @@ const Variables = () => {
         const dialogProp = {
             type: 'ADD',
             cancelButtonName: '取消',
-            confirmButtonName: '新添',
+            confirmButtonName: '添加',
             data: {}
         }
         setVariableDialogProps(dialogProp)
@@ -102,8 +102,8 @@ const Variables = () => {
         const confirmPayload = {
             title: `Delete`,
             description: `Delete variable ${variable.name}?`,
-            confirmButtonName: 'Delete',
-            cancelButtonName: 'Cancel'
+            confirmButtonName: '删除',
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -176,12 +176,12 @@ const Variables = () => {
                                 width: '100%'
                             }}
                         >
-                            <h1 style={{width:'100px'}}>变量&nbsp;</h1>
+                            <h1>Variables&nbsp;</h1>
                             <TextField
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                                 variant='outlined'
-                                placeholder='搜索变量名'
+                                placeholder='搜索变量名称'
                                 onChange={onSearchChange}
                                 InputProps={{
                                     startAdornment: (
@@ -193,7 +193,7 @@ const Variables = () => {
                             />
                             <Box sx={{ flexGrow: 1 }} />
                             <Button variant='outlined' sx={{ mr: 2 }} onClick={() => setShowHowToDialog(true)}>
-                                如何使用
+                                How To Use
                             </Button>
                             <ButtonGroup
                                 sx={{ maxHeight: 40 }}
@@ -311,4 +311,4 @@ const Variables = () => {
     )
 }
 
-export default Variables
+export default Doc

@@ -82,7 +82,7 @@ const Credentials = () => {
 
     const listCredential = () => {
         const dialogProp = {
-            title: 'Add New Credential',
+            title: '添加新凭证',
             componentsCredentials
         }
         setCredentialListDialogProps(dialogProp)
