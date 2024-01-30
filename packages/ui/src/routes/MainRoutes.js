@@ -3,6 +3,7 @@ import { lazy } from 'react'
 // project imports
 import MainLayout from 'layout/MainLayout'
 import Loadable from 'ui-component/loading/Loadable'
+// import Models from 'views/models'
 
 // chatflows routing
 const Chatflows = Loadable(lazy(() => import('views/chatflows')))
@@ -12,6 +13,9 @@ const Marketplaces = Loadable(lazy(() => import('views/marketplaces')))
 
 // apikey routing
 const APIKey = Loadable(lazy(() => import('views/apikey')))
+
+// tools routing
+const Models = Loadable(lazy(() => import('views/models')))
 
 // tools routing
 const Tools = Loadable(lazy(() => import('views/tools')))
@@ -24,6 +28,8 @@ const Credentials = Loadable(lazy(() => import('views/credentials')))
 
 // variables routing
 const Variables = Loadable(lazy(() => import('views/variables')))
+
+const Doc = Loadable(lazy(() => import('views/doc')))
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -44,6 +50,10 @@ const MainRoutes = {
             element: <Marketplaces />
         },
         {
+            path: '/models',
+            element: <Models />
+        },
+        {
             path: '/apikey',
             element: <APIKey />
         },
@@ -62,6 +72,10 @@ const MainRoutes = {
         {
             path: '/variables',
             element: <Variables />
+        },
+        {
+            path: '/doc',
+            element: <Doc />
         }
     ]
 }

@@ -105,23 +105,21 @@ const Models = () => {
         <>
             <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
                 <Stack flexDirection='row'>
-                    <h1 style={{ width: '100px '}}>模型</h1>
+                    <h1 style={{ width: '100px' }}>模型</h1>
                     <Grid sx={{ mb: 1.25 }} container direction='row'>
                         <Box sx={{ flexGrow: 1 }} />
-                        <Grid item>
+                        {/* <Grid item>
                             <Button
                                 variant='outlined'
                                 sx={{ mr: 2 }}
                                 onClick={() => inputRef.current.click()}
                                 startIcon={<IconFileImport />}
-                            >
-                                Load
-                            </Button>
+                            ></Button>
                             <input ref={inputRef} type='file' hidden accept='.json' onChange={(e) => handleFileUpload(e)} />
                             <StyledButton variant='contained' sx={{ color: 'white' }} onClick={addNew} startIcon={<IconPlus />}>
                                 Create
                             </StyledButton>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </Stack>
                 <Grid container spacing={gridSpacing}>
@@ -138,7 +136,7 @@ const Models = () => {
                         <Box sx={{ p: 2, height: 'auto' }}>
                             <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={ToolEmptySVG} alt='ToolEmptySVG' />
                         </Box>
-                        <div>No Tools Created Yet</div>
+                        <div>没有可用模型</div>
                     </Stack>
                 )}
             </MainCard>
@@ -152,4 +150,4 @@ const Models = () => {
     )
 }
 
-export default Tools
+export default Models
