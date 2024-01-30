@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 // material-ui
-import { Grid, Box, Stack, Button } from '@mui/material'
+import { Grid, Box, Stack } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 // project imports
@@ -10,7 +10,6 @@ import MainCard from 'ui-component/cards/MainCard'
 import ItemCard from 'ui-component/cards/ItemCard'
 import { gridSpacing } from 'store/constant'
 import ToolEmptySVG from 'assets/images/tools_empty.svg'
-import { StyledButton } from 'ui-component/button/StyledButton'
 import ToolDialog from './ToolDialog'
 
 // API
@@ -20,7 +19,6 @@ import toolsApi from 'api/tools'
 import useApi from 'hooks/useApi'
 
 // icons
-import { IconPlus, IconFileImport } from '@tabler/icons'
 
 // ==============================|| CHATFLOWS ||============================== //
 
@@ -33,50 +31,48 @@ const Models = () => {
     const [showDialog, setShowDialog] = useState(false)
     const [dialogProps, setDialogProps] = useState({})
 
-    const inputRef = useRef(null)
+    // const onUploadFile = (file) => {
+    //     try {
+    //         const dialogProp = {
+    //             title: 'Add New Tool',
+    //             type: 'IMPORT',
+    //             cancelButtonName: 'Cancel',
+    //             confirmButtonName: 'Save',
+    //             data: JSON.parse(file)
+    //         }
+    //         setDialogProps(dialogProp)
+    //         setShowDialog(true)
+    //     } catch (e) {
+    //         console.error(e)
+    //     }
+    // }
 
-    const onUploadFile = (file) => {
-        try {
-            const dialogProp = {
-                title: 'Add New Tool',
-                type: 'IMPORT',
-                cancelButtonName: 'Cancel',
-                confirmButtonName: 'Save',
-                data: JSON.parse(file)
-            }
-            setDialogProps(dialogProp)
-            setShowDialog(true)
-        } catch (e) {
-            console.error(e)
-        }
-    }
+    // const handleFileUpload = (e) => {
+    //     if (!e.target.files) return
 
-    const handleFileUpload = (e) => {
-        if (!e.target.files) return
+    //     const file = e.target.files[0]
 
-        const file = e.target.files[0]
+    //     const reader = new FileReader()
+    //     reader.onload = (evt) => {
+    //         if (!evt?.target?.result) {
+    //             return
+    //         }
+    //         const { result } = evt.target
+    //         onUploadFile(result)
+    //     }
+    //     reader.readAsText(file)
+    // }
 
-        const reader = new FileReader()
-        reader.onload = (evt) => {
-            if (!evt?.target?.result) {
-                return
-            }
-            const { result } = evt.target
-            onUploadFile(result)
-        }
-        reader.readAsText(file)
-    }
-
-    const addNew = () => {
-        const dialogProp = {
-            title: 'Add New Tool',
-            type: 'ADD',
-            cancelButtonName: 'Cancel',
-            confirmButtonName: 'Add'
-        }
-        setDialogProps(dialogProp)
-        setShowDialog(true)
-    }
+    // const addNew = () => {
+    //     const dialogProp = {
+    //         title: 'Add New Tool',
+    //         type: 'ADD',
+    //         cancelButtonName: 'Cancel',
+    //         confirmButtonName: 'Add'
+    //     }
+    //     setDialogProps(dialogProp)
+    //     setShowDialog(true)
+    // }
 
     const edit = (selectedTool) => {
         const dialogProp = {

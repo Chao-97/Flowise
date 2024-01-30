@@ -24,7 +24,7 @@ const HowToUseVariablesDialog = ({ show, onCancel }) => {
             aria-describedby='alert-dialog-description'
         >
             <DialogTitle sx={{ fontSize: '1rem' }} id='alert-dialog-title'>
-                How To Use Variables
+                如何使用变量
             </DialogTitle>
             <DialogContent>
                 <p style={{ marginBottom: '10px' }}>Variables can be used in Custom Tool Function with the $ prefix.</p>
@@ -37,11 +37,10 @@ const HowToUseVariablesDialog = ({ show, onCancel }) => {
                     basicSetup={{ highlightActiveLine: false, highlightActiveLineGutter: false }}
                 />
                 <p style={{ marginBottom: '10px' }}>
-                    If variable type is Static, the value will be retrieved as it is. If variable type is Runtime, the value will be
-                    retrieved from .env file.
+                    如果变量类型是静态，则将按原样检索值。如果变量类型是运行时，则该值将为 从 .env 文件中检索。
                 </p>
                 <p style={{ marginBottom: '10px' }}>
-                    You can also override variable values in API overrideConfig using <b>vars</b>:
+                    您还可以使用 API overrideConfig 覆盖变量值 <b>vars</b>:
                 </p>
                 <CodeEditor
                     disabled={true}
@@ -52,9 +51,9 @@ const HowToUseVariablesDialog = ({ show, onCancel }) => {
                     basicSetup={{ highlightActiveLine: false, highlightActiveLineGutter: false }}
                 />
                 <p>
-                    Read more from{' '}
+                    阅读更多{' '}
                     <a target='_blank' rel='noreferrer' href='https://docs.flowiseai.com/using-flowise/variables'>
-                        docs
+                        文档内容
                     </a>
                 </p>
             </DialogContent>

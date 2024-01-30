@@ -100,10 +100,10 @@ const Variables = () => {
 
     const deleteVariable = async (variable) => {
         const confirmPayload = {
-            title: `Delete`,
-            description: `Delete variable ${variable.name}?`,
-            confirmButtonName: 'Delete',
-            cancelButtonName: 'Cancel'
+            title: `删除`,
+            description: `是否要删除变量 ${variable.name}?`,
+            confirmButtonName: '删除',
+            cancelButtonName: '取消'
         }
         const isConfirmed = await confirm(confirmPayload)
 
@@ -112,7 +112,7 @@ const Variables = () => {
                 const deleteResp = await variablesApi.deleteVariable(variable.id)
                 if (deleteResp.data) {
                     enqueueSnackbar({
-                        message: 'Variable deleted',
+                        message: '变量已删除',
                         options: {
                             key: new Date().getTime() + Math.random(),
                             variant: 'success',
@@ -128,7 +128,7 @@ const Variables = () => {
             } catch (error) {
                 const errorData = error.response?.data || `${error.response?.status}: ${error.response?.statusText}`
                 enqueueSnackbar({
-                    message: `Failed to delete Variable: ${errorData}`,
+                    message: `删除变量失败: ${errorData}`,
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'error',
@@ -181,7 +181,7 @@ const Variables = () => {
                                 size='small'
                                 sx={{ display: { xs: 'none', sm: 'block' }, ml: 3 }}
                                 variant='outlined'
-                                placeholder='Search variable name'
+                                placeholder='搜索变量名称'
                                 onChange={onSearchChange}
                                 InputProps={{
                                     startAdornment: (
@@ -193,7 +193,7 @@ const Variables = () => {
                             />
                             <Box sx={{ flexGrow: 1 }} />
                             <Button variant='outlined' sx={{ mr: 2 }} onClick={() => setShowHowToDialog(true)}>
-                                How To Use
+                                如何使用
                             </Button>
                             <ButtonGroup
                                 sx={{ maxHeight: 40 }}
@@ -208,7 +208,7 @@ const Variables = () => {
                                         onClick={addNew}
                                         startIcon={<IconPlus />}
                                     >
-                                        Add Variable
+                                        添加变量
                                     </StyledButton>
                                 </ButtonGroup>
                             </ButtonGroup>
@@ -224,7 +224,7 @@ const Variables = () => {
                                 alt='VariablesEmptySVG'
                             />
                         </Box>
-                        <div>No Variables Yet</div>
+                        <div>暂时还没有变量</div>
                     </Stack>
                 )}
                 {variables.length > 0 && (
@@ -232,11 +232,11 @@ const Variables = () => {
                         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Name</TableCell>
-                                    <TableCell>Value</TableCell>
-                                    <TableCell>Type</TableCell>
-                                    <TableCell>Last Updated</TableCell>
-                                    <TableCell>Created</TableCell>
+                                    <TableCell>变量名</TableCell>
+                                    <TableCell>值</TableCell>
+                                    <TableCell>类型</TableCell>
+                                    <TableCell>修改时间</TableCell>
+                                    <TableCell>创建时间</TableCell>
                                     <TableCell> </TableCell>
                                     <TableCell> </TableCell>
                                 </TableRow>
@@ -283,12 +283,12 @@ const Variables = () => {
                                         <TableCell>{moment(variable.updatedDate).format('DD-MMM-YY')}</TableCell>
                                         <TableCell>{moment(variable.createdDate).format('DD-MMM-YY')}</TableCell>
                                         <TableCell>
-                                            <IconButton title='Edit' color='primary' onClick={() => edit(variable)}>
+                                            <IconButton title='编辑' color='primary' onClick={() => edit(variable)}>
                                                 <IconEdit />
                                             </IconButton>
                                         </TableCell>
                                         <TableCell>
-                                            <IconButton title='Delete' color='error' onClick={() => deleteVariable(variable)}>
+                                            <IconButton title='删除' color='error' onClick={() => deleteVariable(variable)}>
                                                 <IconTrash />
                                             </IconButton>
                                         </TableCell>
