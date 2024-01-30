@@ -59,7 +59,7 @@ const Configuration = () => {
             })
             if (saveResp.data) {
                 enqueueSnackbar({
-                    message: 'API Configuration Saved',
+                    message: 'API 配置已保存',
                     options: {
                         key: new Date().getTime() + Math.random(),
                         variant: 'success',
@@ -78,7 +78,7 @@ const Configuration = () => {
                 ? error.response.data || `${error.response.status}: ${error.response.statusText}`
                 : error.message
             enqueueSnackbar({
-                message: `Failed to save API Configuration: ${errorData}`,
+                message: `无法保存 API 配置: ${errorData}`,
                 options: {
                     key: new Date().getTime() + Math.random(),
                     variant: 'error',
@@ -145,7 +145,7 @@ const Configuration = () => {
             {textField(limitMsg, 'limitMsg', 'Limit Message', 'string')}
 
             <StyledButton style={{ marginBottom: 10, marginTop: 10 }} variant='contained' onClick={() => onSave()}>
-                Save Changes
+                保存更改
             </StyledButton>
         </>
     )

@@ -589,7 +589,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                             <>
                                 <p>You cannot use API key while embedding/sharing chatbot.</p>
                                 <p>
-                                    Please select <b>&quot;No Authorization&quot;</b> from the dropdown at the top right corner.
+                                    请从右上角的下拉菜单中选择 <b>&quot;No Authorization&quot;</b> .
                                 </p>
                             </>
                         )}
@@ -603,7 +603,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                     showLineNumbers={false}
                                     wrapLines
                                 />
-                                <CheckboxInput label='Show Input Config' value={checkboxVal} onChange={onCheckBoxChanged} />
+                                <CheckboxInput label='显示输入配置' value={checkboxVal} onChange={onCheckBoxChanged} />
                                 {checkboxVal && getConfigApi.data && getConfigApi.data.length > 0 && (
                                     <>
                                         {Object.keys(nodeConfig)
@@ -688,7 +688,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                             >
                                                 <IconBulb size={30} color='#2d6a4f' />
                                                 <span style={{ color: '#2d6a4f', marginLeft: 10, fontWeight: 500 }}>
-                                                    You can also specify multiple values for a config parameter by specifying the node id
+                                                    您还可以通过指定节点 ID 来为配置参数指定多个值
                                                 </span>
                                             </div>
                                             <div style={{ padding: 10 }}>
@@ -709,11 +709,11 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                                 )}
                                 {getIsChatflowStreamingApi.data?.isStreaming && (
                                     <p>
-                                        Read&nbsp;
+                                        请阅读&nbsp;
                                         <a rel='noreferrer' target='_blank' href='https://docs.flowiseai.com/how-to-use#streaming'>
-                                            here
+                                            文档
                                         </a>
-                                        &nbsp;on how to stream response back to application
+                                        &nbsp;关于如何将响应流回应用程序
                                     </p>
                                 )}
                             </>

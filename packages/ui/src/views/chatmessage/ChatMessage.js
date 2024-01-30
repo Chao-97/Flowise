@@ -45,7 +45,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
     const [loading, setLoading] = useState(false)
     const [messages, setMessages] = useState([
         {
-            message: 'Hi there! How can I help?',
+            message: '你好,我可以帮你做些什么?',
             type: 'apiMessage'
         }
     ])
@@ -98,8 +98,8 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
     }
 
     // Handle errors
-    const handleError = (message = 'Oops! There seems to be an error. Please try again.') => {
-        message = message.replace(`Unable to parse JSON response from chat agent.\n\n`, '')
+    const handleError = (message = '哎呀！似乎有一个错误。请再试一次.') => {
+        message = message.replace(`无法解析来自聊天代理的 JSON 响应.\n\n`, '')
         setMessages((prevMessages) => [...prevMessages, { message, type: 'apiMessage' }])
         setLoading(false)
         setUserInput('')
@@ -132,7 +132,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
         try {
             const params = {
                 question: input,
-                history: messages.filter((msg) => msg.message !== 'Hi there! How can I help?'),
+                history: messages.filter((msg) => msg.message !== '你好,我可以帮你做些什么??'),
                 chatId
             }
             if (isChatFlowAvailableToStream) params.socketIOClientId = socketIOClientId
@@ -298,7 +298,7 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
             setLoading(false)
             setMessages([
                 {
-                    message: 'Hi there! How can I help?',
+                    message: '你好,我可以帮你做些什么??',
                     type: 'apiMessage'
                 }
             ])

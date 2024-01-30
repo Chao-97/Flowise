@@ -282,15 +282,15 @@ const EmbedChat = ({ chatflowid }) => {
                     {(value === 0 || value === 1) && (
                         <>
                             <span>
-                                Paste this anywhere in the <code>{`<body>`}</code> tag of your html file.
+                                将此粘贴到任意html文件中的 <code>{`<body>`}</code> 代码块.
                                 <p>
-                                    You can also specify a&nbsp;
+                                    您还可以指定一个&nbsp;
                                     <a
                                         rel='noreferrer'
                                         target='_blank'
                                         href='https://www.npmjs.com/package/flowise-embed?activeTab=versions'
                                     >
-                                        version
+                                        版本
                                     </a>
                                     :&nbsp;<code>{`https://cdn.jsdelivr.net/npm/flowise-embed@<version>/dist/web.js`}</code>
                                 </p>
@@ -300,7 +300,7 @@ const EmbedChat = ({ chatflowid }) => {
                     )}
                     <CopyBlock theme={atomOneDark} text={getCode(codeLang)} language='javascript' showLineNumbers={false} wrapLines />
 
-                    <CheckboxInput label='Show Embed Chat Config' value={embedChatCheckboxVal} onChange={onCheckBoxEmbedChatChanged} />
+                    <CheckboxInput label='显示嵌入聊天配置' value={embedChatCheckboxVal} onChange={onCheckBoxEmbedChatChanged} />
 
                     {embedChatCheckboxVal && (
                         <CopyBlock
