@@ -1907,7 +1907,7 @@ export async function start(): Promise<void> {
     const redisClient = createClient({ url: 'redis://:123456@localhost:6399' })
     await redisClient.connect()
     const io = new Server(server, {
-        cors: getCorsOptions()
+        cors: getCorsOptions(),
         adapter: createAdapter(redisClient)
     })
 
