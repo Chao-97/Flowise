@@ -5,7 +5,7 @@ module.exports = {
             interpreter: './node_modules/.bin/ts-node',
             interpreter_args: '-r tsconfig-paths/register',
             instance_var: 'INSTANCE_ID',
-            instances: 2,
+            instances: 4,
             exec_mode: 'cluster',
             cwd: './',
             script: '/Users/lichaowei/Jobs/vms/Flowise/packages/server/start.ts'
