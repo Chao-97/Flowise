@@ -55,6 +55,6 @@
         "node": ">=18.15.0"
     },
     "dependencies": {
-        "cross-spawn-async": "^2.2.5"
+        "@socket.io/redis-streams-adapter": "^0.1.0"
     }
 }
