@@ -587,7 +587,7 @@ formData.append("openAIApiKey[openAIEmbeddings_0]", "sk-my-openai-2nd-key")`
                     <TabPanel key={index} value={value} index={index}>
                         {(codeLang === 'Embed' || codeLang === 'Share Chatbot') && chatflowApiKeyId && (
                             <>
-                                <p>You cannot use API key while embedding/sharing chatbot.</p>
+                                <p>当你将聊天机器人嵌入到网页或者分享出去时不能使用Api key</p>
                                 <p>
                                     请从右上角的下拉菜单中选择 <b>&quot;No Authorization&quot;</b> .
                                 </p>
