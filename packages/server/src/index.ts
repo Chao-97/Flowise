@@ -69,7 +69,8 @@ import { parsePrompt } from './utils/hub'
 import { Telemetry } from './utils/telemetry'
 import { Variable } from './database/entities/Variable'
 import { createClient } from 'redis'
-import { createAdapter } from '@socket.io/redis-streams-adapter'
+// import { createAdapter } from '@socket.io/redis-streams-adapter'
+import { createAdapter } from '@socket.io/redis-adapter'
 export class App {
     app: express.Application
     nodesPool: NodesPool
@@ -1905,11 +1906,18 @@ export async function start(): Promise<void> {
     const port = parseInt(process.env.PORT || '', 10) || 3000
     const server = http.createServer(serverApp.app)
     const redisClient = createClient({ url: 'redis://:123456@localhost:6399' })
+    const subClient = redisClient.duplicate()
     await redisClient.connect()
+    await subClient.connect()
     const io = new Server(server, {
         cors: getCorsOptions(),
-        adapter: createAdapter(redisClient)
+        adapter: createAdapter(redisClient, subClient)
     })
+    // await redisClient.connect()
+    // const io = new Server(server, {
+    //     cors: getCorsOptions(),
+    //     adapter: createAdapter(redisClient)
+    // })
 
     await serverApp.initDatabase()
     await serverApp.config(io)

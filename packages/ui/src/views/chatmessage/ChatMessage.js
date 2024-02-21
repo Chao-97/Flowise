@@ -278,9 +278,10 @@ export const ChatMessage = ({ open, chatflowid, isDialog }) => {
             getChatflowConfig.request(chatflowid)
             scrollToBottom()
 
-            socket = socketIOClient(baseURL)
+            socket = socketIOClient(baseURL, { transports: ['websocket'] })
 
             socket.on('connect', () => {
+                socket.io.opts.transports = ['websocket']
                 setSocketIOClientId(socket.id)
             })
 

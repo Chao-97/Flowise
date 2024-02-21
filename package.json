@@ -55,6 +55,7 @@
         "node": ">=18.15.0"
     },
     "dependencies": {
+        "@socket.io/redis-adapter": "^8.2.1",
         "@socket.io/redis-streams-adapter": "^0.1.0"
     }
 }

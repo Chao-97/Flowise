@@ -4,7 +4,8 @@ import * as Server from '../index'
 import * as DataSource from '../DataSource'
 import dotenv from 'dotenv'
 import logger from '../utils/logger'
-
+import cluster from 'cluster'
+import { availableParallelism } from 'node:os'
 dotenv.config({ path: path.join(__dirname, '..', '..', '.env'), override: true })
 
 enum EXIT_CODE {
@@ -122,11 +123,28 @@ export default class Start extends Command {
 
         // Telemetry
         if (flags.DISABLE_FLOWISE_TELEMETRY) process.env.DISABLE_FLOWISE_TELEMETRY = flags.DISABLE_FLOWISE_TELEMETRY
-
         await (async () => {
             try {
                 logger.info('Starting Flowise...')
                 await DataSource.init()
+                const numCPUs = availableParallelism()
+                console.log('cluster.isPrimary', cluster.isPrimary)
+                // if (cluster.isPrimary) {
+                //     console.log(`Primary ${process.pid} is running`)
+                //     // Fork workers.
+                //     // for (let i = 0; i < numCPUs; i++) {
+                //     //     cluster.fork()
+                //     // }
+                //     for (let i = 0; i < 2; i++) {
+                //         cluster.fork()
+                //     }
+                //     cluster.on('exit', (worker, code, signal) => {
+                //         console.log(`worker ${worker.process.pid} died`)
+                //     })
+                // } else {
+                //     await Server.start()
+                //     console.log(`Worker ${process.pid} started`)
+                // }
                 await Server.start()
             } catch (error) {
                 logger.error('There was an error starting Flowise...', error)

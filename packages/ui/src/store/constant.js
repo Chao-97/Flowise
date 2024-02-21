@@ -7,5 +7,5 @@ export const maxScroll = 100000
 export const uiBaseURL = window.location.origin
 export const FLOWISE_CREDENTIAL_ID = 'FLOWISE_CREDENTIAL_ID'
 export const REDACTED_CREDENTIAL_VALUE = '_FLOWISE_BLANK_07167752-1a71-43b1-bf8f-4f32252165db'
-// export const baseURL = 'http://localhost:3000'
-export const baseURL = 'http://106.14.169.234:3000'
+export const baseURL = 'http://localhost:3000'
+// export const baseURL = 'http://106.14.169.234:3000'

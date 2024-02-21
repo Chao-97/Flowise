@@ -35,6 +35,8 @@ const Models = () => {
     const [showDialog, setShowDialog] = useState(false)
     const [dialogProps, setDialogProps] = useState({})
 
+    const inputRef = useRef(null)
+
     const onUploadFile = (file) => {
         try {
             const dialogProp = {
