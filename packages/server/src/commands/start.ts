@@ -127,8 +127,8 @@ export default class Start extends Command {
             try {
                 logger.info('Starting Flowise...')
                 await DataSource.init()
-                const numCPUs = availableParallelism()
-                console.log('cluster.isPrimary', cluster.isPrimary)
+                // const numCPUs = availableParallelism()
+                // console.log('cluster.isPrimary', cluster.isPrimary)
                 // if (cluster.isPrimary) {
                 //     console.log(`Primary ${process.pid} is running`)
                 //     // Fork workers.
