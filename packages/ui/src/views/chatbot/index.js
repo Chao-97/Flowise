@@ -31,10 +31,12 @@ const ChatbotFull = () => {
     const getSpecificChatflowFromPublicApi = useApi(chatflowsApi.getSpecificChatflowFromPublicEndpoint)
     const getSpecificChatflowApi = useApi(chatflowsApi.getSpecificChatflow)
 
-    const onLoginClick = (username, password) => {
-        localStorage.setItem('username', username)
-        localStorage.setItem('password', password)
-        navigate(0)
+    const onLoginClick = (username, password , phone) => {
+        // localStorage.setItem('username', username)
+        // localStorage.setItem('password', password)
+        // localStorage.setItem('phone', phone)
+        // navigate(0)
+        console.log(username, password,phone);
     }
 
     useEffect(() => {
