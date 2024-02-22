@@ -9,6 +9,17 @@ export enum chatType {
 /**
  * Databases
  */
+
+export interface IUser {
+    id: string
+    name: string
+    password:string
+    phone:string
+    salt: string
+    updatedDate: Date
+    createdDate: Date
+}
+
 export interface IChatFlow {
     id: string
     name: string

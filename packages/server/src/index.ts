@@ -1,4 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express'
+import jwt from 'jsonwebtoken';
+// import { customAlphabet } from 'nanoid';
 import multer from 'multer'
 import path from 'path'
 import cors from 'cors'
@@ -68,6 +70,7 @@ import { Client } from 'langchainhub'
 import { parsePrompt } from './utils/hub'
 import { Telemetry } from './utils/telemetry'
 import { Variable } from './database/entities/Variable'
+import { User } from './database/entities/User'
 
 export class App {
     app: express.Application
@@ -155,7 +158,9 @@ export class App {
                 '/api/v1/components-credentials-icon/',
                 '/api/v1/chatflows-streaming',
                 '/api/v1/openai-assistants-file',
-                '/api/v1/ip'
+                '/api/v1/ip',
+                // '/api/v1/login',
+                // '/api/v1/register'
             ]
             this.app.use((req, res, next) => {
                 if (req.url.includes('/api/v1/')) {
@@ -761,7 +766,7 @@ export class App {
             const existingFiles = resp.data ?? []
 
             if (retrievedAssistant.file_ids && retrievedAssistant.file_ids.length) {
-                ;(retrievedAssistant as any).files = existingFiles.filter((file) => retrievedAssistant.file_ids.includes(file.id))
+                ; (retrievedAssistant as any).files = existingFiles.filter((file) => retrievedAssistant.file_ids.includes(file.id))
             }
 
             return res.json(retrievedAssistant)
@@ -1350,6 +1355,63 @@ export class App {
         })
 
         // ----------------------------------------
+        // Login
+        // ----------------------------------------
+
+        // register 用户注册
+        // this.app.post('/api/v1/register', async (req: Request, res: Response) => {
+        //     const salt = await this.generateRandomValue(32);
+        //     const password = CryptoJS.MD5(`${req.body.password}${salt}`).toString();;
+        //     await this.AppDataSource.getRepository(User)
+        //         .createQueryBuilder('user')
+        //         .insert()
+        //         .into(User)
+        //         .values({
+        //             name: req.body.name,
+        //             password: password,
+        //             salt: salt
+        //         })
+        //         .execute()
+        //     return res.send({ msg: "注册成功" })
+        // })
+        // 登陆
+        // this.app.post('/api/v1/login', async (req: Request, res: Response) => {
+        //     let password = req.body.password
+        //     const user = await this.AppDataSource.getRepository(User)
+        //         .createQueryBuilder('user')
+        //         .where('user.phone = :phone', { phone: req.body.phone })
+        //         .execute()
+        //     if (!user) {
+        //         return "未找到用户"
+        //     }
+        //     // 密码登陆
+        //     if (password) {
+        //         const comparePassword = CryptoJS.MD5(`${password}${user.psalt}`);
+        //         if (user.password !== comparePassword) {
+        //             return "密码错误"
+        //         }
+        //     }
+        //     //根据后续需求是否开放多点登录
+        //     // const oldToken = await this.getRedisTokenById(user.id);
+        //     // if (oldToken) {
+        //     //     this.logService.saveLoginLog(user.id, ip, ua);
+        //     //     return oldToken;
+        //     // }
+        //     const pv = ""
+        //     const jwtSign = jwt.sign(
+        //         {
+        //             uid: user.id,
+        //         },
+        //         pv,
+        //         {
+        //             expiresIn: '24h',
+        //         },
+        //     );
+        //     return res.send({ msg: "登陆成功", jwt: jwtSign })
+        // })
+
+
+        // ----------------------------------------
         // Serve UI static
         // ----------------------------------------
 
@@ -1363,6 +1425,22 @@ export class App {
         this.app.use((req, res) => {
             res.sendFile(uiHtmlPath)
         })
+
+
+
+    }
+    /**
+   * 生成一个随机的值
+   */
+    async generateRandomValue(
+        length: number,
+        chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM',
+    ) {
+        let result = '';
+        for (let i = 0; i < 32; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
     }
 
     /**
@@ -1771,25 +1849,25 @@ export class App {
 
             let result = isStreamValid
                 ? await nodeInstance.run(nodeToExecuteData, incomingInput.question, {
-                      chatId,
-                      chatflowid,
-                      chatHistory: incomingInput.history,
-                      logger,
-                      appDataSource: this.AppDataSource,
-                      databaseEntities,
-                      analytic: chatflow.analytic,
-                      socketIO,
-                      socketIOClientId: incomingInput.socketIOClientId
-                  })
+                    chatId,
+                    chatflowid,
+                    chatHistory: incomingInput.history,
+                    logger,
+                    appDataSource: this.AppDataSource,
+                    databaseEntities,
+                    analytic: chatflow.analytic,
+                    socketIO,
+                    socketIOClientId: incomingInput.socketIOClientId
+                })
                 : await nodeInstance.run(nodeToExecuteData, incomingInput.question, {
-                      chatId,
-                      chatflowid,
-                      chatHistory: incomingInput.history,
-                      logger,
-                      appDataSource: this.AppDataSource,
-                      databaseEntities,
-                      analytic: chatflow.analytic
-                  })
+                    chatId,
+                    chatflowid,
+                    chatHistory: incomingInput.history,
+                    logger,
+                    appDataSource: this.AppDataSource,
+                    databaseEntities,
+                    analytic: chatflow.analytic
+                })
 
             result = typeof result === 'string' ? { text: result } : result
 
@@ -1891,3 +1969,4 @@ export async function start(): Promise<void> {
 export function getInstance(): App | undefined {
     return serverApp
 }
+
