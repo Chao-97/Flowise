@@ -40,7 +40,7 @@ const Chatflows = () => {
     const [isLoading, setLoading] = useState(true)
     const [images, setImages] = useState({})
     const [search, setSearch] = useState('')
-    const [loginDialogOpen, setLoginDialogOpen] = useState(false)
+    const [loginDialogOpen, setLoginDialogOpen] = useState(true)//控制登陆dialog
     const [loginDialogProps, setLoginDialogProps] = useState({})
 
     const getAllChatflowsApi = useApi(chatflowsApi.getAllChatflows)
@@ -91,6 +91,10 @@ const Chatflows = () => {
                 })
                 setLoginDialogOpen(true)
             }
+            setLoginDialogProps({
+                title: 'Login',
+                confirmButtonName: 'Login'
+            })
         }
     }, [getAllChatflowsApi.error])
 
