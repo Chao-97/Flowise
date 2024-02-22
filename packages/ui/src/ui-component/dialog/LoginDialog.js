@@ -24,6 +24,11 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
     const [ifQrcode, setifQrcode] = useState(false)
     const component = show ? (
         <Dialog
+        sx={{
+            '& .MuiBackdrop-root': {
+              backgroundColor: 'rgba(255, 255, 255, 1)',
+            }
+          }}
             onKeyUp={(e) => {
                 console.log(usernameVal,passwordVal);
                 if (e.key === 'Enter') {
