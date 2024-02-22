@@ -9,12 +9,24 @@ export enum chatType {
 /**
  * Databases
  */
+
+export interface IUser {
+    id: string
+    name: string
+    password: string
+    psalt: string
+    phone: string
+    updatedDate: Date
+    createdDate: Date
+}
+
 export interface IChatFlow {
     id: string
     name: string
     flowData: string
     updatedDate: Date
     createdDate: Date
+    user_id?: string
     deployed?: boolean
     isPublic?: boolean
     apikeyid?: string
@@ -43,6 +55,7 @@ export interface ITool {
     name: string
     description: string
     color: string
+    user_id?: string
     iconSrc?: string
     schema?: string
     func?: string

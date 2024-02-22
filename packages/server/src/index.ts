@@ -11,6 +11,8 @@ import { expressRequestLogger } from './utils/logger'
 import { v4 as uuidv4 } from 'uuid'
 import OpenAI from 'openai'
 import { Between, IsNull, FindOptionsWhere } from 'typeorm'
+import { isEmpty } from 'lodash'
+import * as CryptoJS from 'crypto-js'
 import {
     IChatFlow,
     IncomingInput,
@@ -71,6 +73,9 @@ import { Variable } from './database/entities/Variable'
 import { createClient } from 'redis'
 // import { createAdapter } from '@socket.io/redis-streams-adapter'
 import { createAdapter } from '@socket.io/redis-adapter'
+import { User } from './database/entities/User'
+import jwt from 'jsonwebtoken'
+
 export class App {
     app: express.Application
     nodesPool: NodesPool
@@ -188,6 +193,67 @@ export class App {
                 ip: request.ip,
                 msg: 'See the returned IP address in the response. If it matches your current IP address ( which you can get by going to http://ip.nfriedly.com/ or https://api.ipify.org/ ), then the number of proxies is correct and the rate limiter should now work correctly. If not, increase the number of proxies by 1 until the IP address matches your own. Visit https://docs.flowiseai.com/deployment#rate-limit-setup-guide for more information.'
             })
+        })
+
+        // ----------------------------------------
+        // Login
+        // ----------------------------------------
+
+        // register 用户注册
+        this.app.post('/api/v1/register', async (req: Request, res: Response) => {
+            const user = await this.AppDataSource.getRepository(User)
+                .createQueryBuilder('user')
+                .where('user.phone = :phone', { phone: req.body.phone })
+                .execute()
+            if (!isEmpty(user)) {
+                return res.send({ msg: '用户已经注册,请重新登陆' })
+            }
+            const salt = await generateRandomValue()
+            const password = CryptoJS.MD5(`${req.body.password}${salt}`).toString()
+            await this.AppDataSource.getRepository(User)
+                .createQueryBuilder('user')
+                .insert()
+                .into(User)
+                .values({
+                    name: req.body.name,
+                    password: password,
+                    phone: req.body.phone,
+                    psalt: salt
+                })
+                .execute()
+            return res.status(200).send({ msg: '注册成功' })
+        })
+
+        // 登陆
+        this.app.post('/api/v1/login', async (req: Request, res: Response) => {
+            let password = req.body.password
+            const user = await this.AppDataSource.getRepository(User)
+                .createQueryBuilder('user')
+                .where('user.phone = :phone', { phone: req.body.phone })
+                .getOne()
+            if (isEmpty(user)) {
+                return res.send({ msg: '未找到用户' })
+            }
+            // 密码登陆
+            if (password) {
+                const comparePassword = CryptoJS.MD5(`${password}${user.psalt}`).toString()
+                // eslint-disable-next-line no-console
+                console.log(user, comparePassword)
+                if (user.password !== comparePassword) {
+                    return res.send({ msg: '密码错误' })
+                }
+            }
+            const pv = Date.now().toString()
+            const jwtSign = jwt.sign(
+                {
+                    uid: user.id
+                },
+                pv,
+                {
+                    expiresIn: '24h'
+                }
+            )
+            return res.send({ msg: '登陆成功', jwt: jwtSign })
         })
 
         // ----------------------------------------
@@ -1892,6 +1958,15 @@ export class App {
             logger.error(`❌[server]: Flowise Server shut down error: ${e}`)
         }
     }
+}
+
+export async function generateRandomValue() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    let result = ''
+    for (let i = 0; i < 32; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length))
+    }
+    return result
 }
 
 let serverApp: App | undefined
