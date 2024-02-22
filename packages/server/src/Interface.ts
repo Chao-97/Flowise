@@ -13,8 +13,8 @@ export enum chatType {
 export interface IUser {
     id: string
     name: string
-    password:string
-    phone:string
+    password: string
+    phone: string
     salt: string
     updatedDate: Date
     createdDate: Date

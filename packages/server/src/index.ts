@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express'
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 // import { customAlphabet } from 'nanoid';
 import multer from 'multer'
 import path from 'path'
@@ -158,7 +158,7 @@ export class App {
                 '/api/v1/components-credentials-icon/',
                 '/api/v1/chatflows-streaming',
                 '/api/v1/openai-assistants-file',
-                '/api/v1/ip',
+                '/api/v1/ip'
                 // '/api/v1/login',
                 // '/api/v1/register'
             ]
@@ -766,7 +766,7 @@ export class App {
             const existingFiles = resp.data ?? []
 
             if (retrievedAssistant.file_ids && retrievedAssistant.file_ids.length) {
-                ; (retrievedAssistant as any).files = existingFiles.filter((file) => retrievedAssistant.file_ids.includes(file.id))
+                ;(retrievedAssistant as any).files = existingFiles.filter((file) => retrievedAssistant.file_ids.includes(file.id))
             }
 
             return res.json(retrievedAssistant)
@@ -1410,7 +1410,6 @@ export class App {
         //     return res.send({ msg: "登陆成功", jwt: jwtSign })
         // })
 
-
         // ----------------------------------------
         // Serve UI static
         // ----------------------------------------
@@ -1425,22 +1424,16 @@ export class App {
         this.app.use((req, res) => {
             res.sendFile(uiHtmlPath)
         })
-
-
-
     }
     /**
-   * 生成一个随机的值
-   */
-    async generateRandomValue(
-        length: number,
-        chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM',
-    ) {
-        let result = '';
+     * 生成一个随机的值
+     */
+    async generateRandomValue(length: number, chars = '1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM') {
+        let result = ''
         for (let i = 0; i < 32; i++) {
-            result += chars.charAt(Math.floor(Math.random() * chars.length));
+            result += chars.charAt(Math.floor(Math.random() * chars.length))
         }
-        return result;
+        return result
     }
 
     /**
@@ -1849,25 +1842,25 @@ export class App {
 
             let result = isStreamValid
                 ? await nodeInstance.run(nodeToExecuteData, incomingInput.question, {
-                    chatId,
-                    chatflowid,
-                    chatHistory: incomingInput.history,
-                    logger,
-                    appDataSource: this.AppDataSource,
-                    databaseEntities,
-                    analytic: chatflow.analytic,
-                    socketIO,
-                    socketIOClientId: incomingInput.socketIOClientId
-                })
+                      chatId,
+                      chatflowid,
+                      chatHistory: incomingInput.history,
+                      logger,
+                      appDataSource: this.AppDataSource,
+                      databaseEntities,
+                      analytic: chatflow.analytic,
+                      socketIO,
+                      socketIOClientId: incomingInput.socketIOClientId
+                  })
                 : await nodeInstance.run(nodeToExecuteData, incomingInput.question, {
-                    chatId,
-                    chatflowid,
-                    chatHistory: incomingInput.history,
-                    logger,
-                    appDataSource: this.AppDataSource,
-                    databaseEntities,
-                    analytic: chatflow.analytic
-                })
+                      chatId,
+                      chatflowid,
+                      chatHistory: incomingInput.history,
+                      logger,
+                      appDataSource: this.AppDataSource,
+                      databaseEntities,
+                      analytic: chatflow.analytic
+                  })
 
             result = typeof result === 'string' ? { text: result } : result
 
@@ -1969,4 +1962,3 @@ export async function start(): Promise<void> {
 export function getInstance(): App | undefined {
     return serverApp
 }
-

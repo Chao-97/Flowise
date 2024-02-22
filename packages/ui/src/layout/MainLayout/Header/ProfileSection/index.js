@@ -158,7 +158,7 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                         <ListItemText primary={<Typography variant='body2'>Logout</Typography>} />
                                                     </ListItemButton>
                                                 )}
-                                                {(
+                                                {
                                                     <ListItemButton
                                                         sx={{ borderRadius: `${customization.borderRadius}px` }}
                                                         onClick={handleLogout}
@@ -168,7 +168,7 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                         </ListItemIcon>
                                                         <ListItemText primary={<Typography variant='body2'>Logout</Typography>} />
                                                     </ListItemButton>
-                                                )}
+                                                }
                                             </List>
                                         </Box>
                                     </PerfectScrollbar>
