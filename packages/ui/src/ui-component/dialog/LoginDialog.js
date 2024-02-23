@@ -1,13 +1,13 @@
 import { createPortal } from 'react-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 // import QRCode from 'qrcode.react'
 import { Dialog, DialogActions, DialogContent, Typography, DialogTitle } from '@mui/material'
 import { StyledButton } from 'ui-component/button/StyledButton'
 import { Input } from 'ui-component/input/Input'
-import { baseURL } from 'store/constant'
 import axios from 'axios'
-const LoginDialog = ({ show, dialogProps, onConfirm }) => {
+import { baseURL } from 'store/constant'
+const LoginDialog = ({ show, dialogProps, onConfirm, setShow }) => {
     const portalElement = document.getElementById('portal')
     const phoneInput = {
         label: 'Phone',
@@ -41,6 +41,18 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
     const [phoneVal, setphoneVal] = useState('')
     const [ifQrcode, setifQrcode] = useState(false)
     const [Register, setRegister] = useState(false)
+
+    useEffect(() => {
+        const loginDetails = JSON.parse(localStorage.getItem('loginDetails'))
+        if (loginDetails) {
+            const currentTime = new Date().getTime() // 获取当前时间的时间戳
+            // 检查时间是否超过24小时 (24 * 60 * 60 * 1000 毫秒 = 24小时)
+            if (currentTime - loginDetails.loginTime > 24 * 60 * 60 * 1000) {
+                // 时间超过24小时，移除登录信息
+                localStorage.removeItem('loginDetails')
+            }
+        }
+    })
     // 注册
     const handleRegister = function () {
         if (usernameVal || phoneVal || passwordVal !== '') {
@@ -52,6 +64,8 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
                 })
                 .then((res) => {
                     console.log(res)
+                    //注册成功转手机账号密码登录
+                    setRegister(false)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -59,6 +73,27 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
         }
     }
 
+    // 登录
+    const handleLogin = function () {
+        if (phoneVal || passwordVal !== '') {
+            axios
+                .post(`${baseURL}/api/v1/login`, {
+                    phone: phoneVal,
+                    password: passwordVal
+                })
+                .then((res) => {
+                    console.log(res)
+                    //登录成功关闭dialog/储存token/标记登录时间
+                    const currentTime = new Date().getTime()
+                    const loginDetails = { token: res?.data?.jwt, loginTime: currentTime }
+                    localStorage.setItem('loginDetails', JSON.stringify(loginDetails))
+                    setShow(false)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
     const component = show ? (
         <Dialog
             sx={{
@@ -109,9 +144,9 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
                         <DialogContent>
                             <Typography>手机号</Typography>
                             <Input
-                                inputParam={usernameInput}
-                                onChange={(newValue) => setUsernameVal(newValue)}
-                                value={usernameVal}
+                                inputParam={phoneInput}
+                                onChange={(newValue) => setphoneVal(newValue)}
+                                value={phoneVal}
                                 showDialog={false}
                             />
                             <div style={{ marginTop: 20 }}></div>
@@ -122,7 +157,7 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
                             <StyledButton onClick={() => setRegister(true)} style={{ backgroundColor: 'white', color: 'black' }}>
                                 注册
                             </StyledButton>
-                            <StyledButton onClick={() => onConfirm(usernameVal, passwordVal)}>登录</StyledButton>
+                            <StyledButton onClick={() => handleLogin()}>登录</StyledButton>
                         </DialogActions>
                     </div>
                     {/* ) : (
@@ -185,7 +220,8 @@ const LoginDialog = ({ show, dialogProps, onConfirm }) => {
 LoginDialog.propTypes = {
     show: PropTypes.bool,
     dialogProps: PropTypes.object,
-    onConfirm: PropTypes.func
+    onConfirm: PropTypes.func,
+    setShow: PropTypes.any
 }
 
 export default LoginDialog

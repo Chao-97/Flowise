@@ -40,7 +40,7 @@ const Chatflows = () => {
     const [isLoading, setLoading] = useState(true)
     const [images, setImages] = useState({})
     const [search, setSearch] = useState('')
-    const [loginDialogOpen, setLoginDialogOpen] = useState(false)
+    const [loginDialogOpen, setLoginDialogOpen] = useState(true)
     const [loginDialogProps, setLoginDialogProps] = useState({})
 
     const getAllChatflowsApi = useApi(chatflowsApi.getAllChatflows)
@@ -211,7 +211,7 @@ const Chatflows = () => {
                     <div>还没有聊天流</div>
                 </Stack>
             )}
-            <LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} />
+            <LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} setShow={setLoginDialogOpen} />
             <ConfirmDialog />
         </MainCard>
     )
