@@ -8,11 +8,23 @@ import {
     IconRobot,
     IconVariable,
     IconFile3d,
-    IconFiles
+    IconFiles,
+    IconBrandSnapseed
 } from '@tabler/icons'
 
 // constant
-const icons = { IconHierarchy, IconBuildingStore, IconKey, IconTool, IconLock, IconRobot, IconVariable, IconFile3d, IconFiles }
+const icons = {
+    IconHierarchy,
+    IconBuildingStore,
+    IconKey,
+    IconTool,
+    IconLock,
+    IconRobot,
+    IconVariable,
+    IconFile3d,
+    IconFiles,
+    IconBrandSnapseed
+}
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
@@ -78,13 +90,21 @@ const dashboard = {
             breadcrumbs: true
         },
         {
-            id: 'doc',
-            title: '文档',
+            id: 'evaluate',
+            title: '评测模型推理速率',
             type: 'item',
-            url: '/doc',
-            icon: icons.IconFiles,
-            breadcrumbs: true
+            url: '/predict',
+            icon: icons.IconBrandSnapseed,
+            breadcrumbs: false
         }
+        // {
+        //     id: 'doc',
+        //     title: '文档',
+        //     type: 'item',
+        //     url: '/doc',
+        //     icon: icons.IconFiles,
+        //     breadcrumbs: true
+        // }
     ]
 }
 

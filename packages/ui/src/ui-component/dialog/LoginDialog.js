@@ -82,12 +82,15 @@ const LoginDialog = ({ show, dialogProps, onConfirm, setShow }) => {
                     password: passwordVal
                 })
                 .then((res) => {
-                    console.log(res)
-                    //登录成功关闭dialog/储存token/标记登录时间
-                    const currentTime = new Date().getTime()
-                    const loginDetails = { token: res?.data?.jwt, loginTime: currentTime }
-                    localStorage.setItem('loginDetails', JSON.stringify(loginDetails))
-                    setShow(false)
+                    if (res.data.msg === '登陆成功') {
+                        //登录成功关闭dialog/储存token/标记登录时间
+                        const currentTime = new Date().getTime()
+                        const loginDetails = { token: res?.data?.jwt, loginTime: currentTime }
+                        localStorage.setItem('loginDetails', JSON.stringify(loginDetails))
+                        setShow(false)
+                    } else {
+                        alert('账号或密码错误')
+                    }
                 })
                 .catch((err) => {
                     console.log(err)

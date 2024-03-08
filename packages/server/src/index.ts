@@ -158,8 +158,8 @@ export class App {
         this.app.use(sanitizeMiddleware)
 
         if (process.env.FLOWISE_USERNAME && process.env.FLOWISE_PASSWORD) {
-            const username = process.env.FLOWISE_USERNAME
-            const password = process.env.FLOWISE_PASSWORD
+            const username = process.env.FLOWISE_USERNAME ?? 'user'
+            const password = process.env.FLOWISE_PASSWORD ?? '1234'
             const basicAuthMiddleware = basicAuth({
                 users: { [username]: password }
             })
